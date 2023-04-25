@@ -1,5 +1,4 @@
-package testBase;
-
+import address.PageAddress;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -11,6 +10,7 @@ import java.time.Duration;
 
 public class BaseTest {
 
+    PageAddress pageAddress;
     WebDriver driver;
     String driverPath = "C:\\_dane\\_projekty\\chromedriver112.exe";
 
@@ -23,10 +23,14 @@ public class BaseTest {
         options.setBrowserVersion("112");
         options.addArguments();
         driver = new ChromeDriver(options);
+        // uzycie WebDriverManagera
+        driver.get(pageAddress.getHomePageUrl());
+
     }
 
     @AfterTest
     public void quit() {
+        driver.close();
         driver.quit();
     }
 }

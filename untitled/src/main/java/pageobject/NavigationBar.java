@@ -6,6 +6,9 @@ import org.openqa.selenium.support.FindBy;
 
 public class NavigationBar {
 
+    @FindBy(className = ".logo.pull-left")
+    public WebElement logoButton;
+
     @FindBy(xpath = "//*[@class='shop-menu pull-right']//*[contains(text(), 'Home')]")
     public WebElement homeButton;
 
@@ -33,6 +36,11 @@ public class NavigationBar {
 
     @FindBy(xpath = "//*[@class='shop-menu pull-right']//*[contains(text(), 'Contact us')]")
     public WebElement contactButton;
+
+
+    public WebElement getLogoButton() {
+        return logoButton;
+    }
 
     public WebElement getHomeButton() {
         return homeButton;
