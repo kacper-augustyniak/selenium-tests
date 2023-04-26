@@ -1,12 +1,15 @@
 import org.testng.annotations.Test;
 import pageobject.NavigationBar;
+import pageobject.SignUpFormElements;
 import pages.HomePage;
+import pages.SignUpFormPage;
 import pages.SignupPage;
 
 
 public class Test01 extends BaseTest {
 
     private NavigationBar navigationBar;
+    private SignUpFormElements signUpFormElements;
 
 
     @Test
@@ -16,9 +19,12 @@ public class Test01 extends BaseTest {
         homePage.waitUntilHomePageVisible();
         navigationBar.getSignupLoginButton().click();
         SignupPage signupPage = new SignupPage(driver);
-        signupPage.waitUntilSignupLabelIsVisible();
+        signupPage.waitUntilElementIsVisible(signUpFormElements.getSignUpFormHeader());
         signupPage.newUser("Adam Smith", "password1");
-
+        SignUpFormPage signUpFormPage = signupPage.submitNewUser();
+// days months years selectors
+        signUpFormElements.getNewsletterChckbx().click();
+        signUpFormElements.getOffersChckbx().click();
 
 
 
