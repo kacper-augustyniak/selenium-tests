@@ -6,6 +6,10 @@ import org.openqa.selenium.support.FindBy;
 
 public class NavigationBar {
 
+//    public NavigationBar(WebDriver driver) {
+//        this.driver = driver;
+//    }
+
     @FindBy(className = ".logo.pull-left")
     public WebElement logoButton;
 
@@ -20,7 +24,7 @@ public class NavigationBar {
     public WebElement cartButton;
 
 
-    @FindBy(xpath = "//*[@class='shop-menu pull-right']//*[contains(text(), 'Signup / Log in')]")
+    @FindBy(xpath = "//*[@class='shop-menu pull-right']//*[contains(text(), 'Signup / Login')]")
     public WebElement signupLoginButton;
 
 

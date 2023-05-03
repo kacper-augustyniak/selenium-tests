@@ -1,7 +1,10 @@
 package pageobject;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
 
 
 public class SignUpFormElements {
@@ -47,11 +50,14 @@ public class SignUpFormElements {
     @FindBy (id = "address2")
     private WebElement address2;
 
+    @FindBy (id = "country")
+    private WebElement country;
+
     @FindBy (id = "company")
     private WebElement company;
 
-    @FindBy (id = "country")
-    private WebElement country;
+    @FindBy (id = "city")
+    private WebElement city;
 
     @FindBy (id = "state")
     private WebElement state;
@@ -118,12 +124,16 @@ public class SignUpFormElements {
         return address2;
     }
 
+    public WebElement getCountry() {
+        return country;
+    }
+
     public WebElement getCompany() {
         return company;
     }
 
-    public WebElement getCountry() {
-        return country;
+    public WebElement getCity() {
+        return city;
     }
 
     public WebElement getState() {

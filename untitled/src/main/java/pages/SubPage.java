@@ -10,7 +10,6 @@ public class SubPage {
         this.driver = driver;
     }
 
-    public CartPopup addItemToCart(int positionOnPage) {
+//    public CartPopup addItemToCart(int positionOnPage) {
 
     }
-}

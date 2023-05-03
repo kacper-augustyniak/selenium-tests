@@ -1,9 +1,14 @@
 package pageobject;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class SignUpPageElements {
+
+//    public SignUpPageElements(WebDriver driver) {
+//        super(driver);
+//    }
 
     @FindBy (xpath = "//form[@action=\"/login\"]//input[@type=\"email\"]")
     private WebElement loginField;

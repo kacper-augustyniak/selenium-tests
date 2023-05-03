@@ -5,8 +5,8 @@ import org.openqa.selenium.support.PageFactory;
 import pageobject.NavigationBar;
 
 public class BasePage {
+
     protected WebDriver driver;
-    protected NavigationBar navigationBar;
 
     public BasePage(WebDriver driver){
         this.driver = driver;

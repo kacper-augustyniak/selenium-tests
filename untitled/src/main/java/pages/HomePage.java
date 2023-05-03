@@ -22,6 +22,7 @@ public class HomePage extends BasePage {
 
     public HomePage(WebDriver driver) {
         super(driver);
+        navigationBar = new NavigationBar();
     }
 
     public HomePage launchPage() {
@@ -31,11 +32,16 @@ public class HomePage extends BasePage {
 
     public void waitUntilHomePageVisible() {
         WebElement logoIsVisible = new WebDriverWait(driver, Duration.ofSeconds(5)).
-                until(ExpectedConditions.elementToBeClickable(By.className(".logo.pull-left")));
+                until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector(".logo.pull-left"))));
         WebElement carouselAd = new WebDriverWait(driver, Duration.ofSeconds(5)).
-                until(ExpectedConditions.elementToBeClickable(By.className(".carousel-inner")));
+                until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector(".carousel-inner"))));
         Assert.isTrue(logoIsVisible.isDisplayed(), "Logo is not visible yet!");
         Assert.isTrue(carouselAd.isDisplayed(), "Carousel Ad is not visible yet!");
+    }
+
+    public SignupPage registerUser() {
+        navigationBar.signupLoginButton.click();
+        return new SignupPage(driver);
     }
 
     public SubPage chooseManCategory(int type) {
@@ -54,12 +60,5 @@ public class HomePage extends BasePage {
 //
 //        return SubPage;
 //    }
-
-}
-
-
-
-
-
 
 }
