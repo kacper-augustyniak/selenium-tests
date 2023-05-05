@@ -61,6 +61,11 @@ public class HomePage extends BasePage {
         return new AccountDeletedPage(driver);
     }
 
+    public HomePage logoutUser() {
+        navigationBarObjects.logoutButton.click();
+        return new HomePage(driver);
+    }
+
     public SubPage chooseManCategory(int type) {
         categorySideBarObjects.getMenButton().click();
         switch (type) {
