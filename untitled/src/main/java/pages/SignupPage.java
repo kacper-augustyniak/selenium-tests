@@ -27,6 +27,12 @@ public class SignupPage extends BasePage{
         return errorIsVisible;
     }
 
+    public boolean failedSignupErrorMessage() {
+        WebDriverWait waitFor = new WebDriverWait(driver, Duration.ofSeconds(5));
+        boolean errorIsVisible = waitFor.until(ExpectedConditions.visibilityOf(signupPageObjects.getFailedSignupErrorMsg())).isDisplayed();
+        return errorIsVisible;
+    }
+
     public void newUser(String name, String password) {
         signupPageObjects.getSignupNameField().sendKeys(name);
         signupPageObjects.getSignupEmailField().sendKeys(password);

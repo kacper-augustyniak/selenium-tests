@@ -19,7 +19,6 @@
             <artifactId>selenium-java</artifactId>
             <version>4.8.3</version>
         </dependency>
-
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -33,5 +32,4 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
-
 </project>

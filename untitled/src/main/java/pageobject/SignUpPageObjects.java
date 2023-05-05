@@ -32,6 +32,9 @@ public class SignUpPageObjects {
     @FindBy(xpath = "//*[@class='login-form']//*[contains(text(), 'Your email or password is incorrect!')]")
     private WebElement failedLoginErrorMsg;
 
+    @FindBy(xpath = "//*[@class='signup-form']//*[contains(text(), 'Email Address already exist!')]")
+    private WebElement failedSignupErrorMsg;
+
     public WebElement getLoginField() {
         return loginField;
     }
@@ -66,5 +69,9 @@ public class SignUpPageObjects {
 
     public WebElement getFailedLoginErrorMsg() {
         return failedLoginErrorMsg;
+    }
+
+    public WebElement getFailedSignupErrorMsg() {
+        return failedSignupErrorMsg;
     }
 }

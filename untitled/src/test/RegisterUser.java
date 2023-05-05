@@ -4,6 +4,9 @@ import pageobject.NavigationBarObjects;
 import pageobject.SignUpFormObjects;
 import pageobject.SignUpPageObjects;
 import pages.*;
+
+import java.util.Random;
+
 import static org.testng.AssertJUnit.*;
 
 
@@ -16,6 +19,11 @@ public class RegisterUser extends BaseTest {
     private NavigationBarObjects navigationBarObjects;
     private PageAddress pageAddress;
 
+    private Random random;
+
+    private String username = random.nextInt() + "name";
+    private String emailAddress = random.nextInt() + "@abc.com";
+
     @Test
     public void registerUser() {
         HomePage homePage = new HomePage(driver);
@@ -23,7 +31,7 @@ public class RegisterUser extends BaseTest {
         SignupPage signupPage = homePage.registerOrLogInUser();
         signupPage.waitUntilElementIsVisible(signUpPageObjects.getSignupLabel());
         assertEquals(pageAddress.getSignupLoginPageUrl(), getCurrentAddress());
-        signupPage.newUser("Adam Smith", "password1");
+        signupPage.newUser(username, emailAddress);
         SignUpFormPage signUpFormPage = signupPage.submitNewUser();
         assertEquals(pageAddress.getSignupPageUrl(), getCurrentAddress());
         signUpFormPage.chooseTitle("Ms");
