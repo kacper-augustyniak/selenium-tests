@@ -19,7 +19,12 @@ public class SignupPage extends BasePage{
     public void waitUntilElementIsVisible(WebElement element) {
         WebDriverWait waitFor = new WebDriverWait(driver, Duration.ofSeconds(5));
         waitFor.until(ExpectedConditions.visibilityOf(element));
+    }
 
+    public boolean failedLoginErrorMessage() {
+        WebDriverWait waitFor = new WebDriverWait(driver, Duration.ofSeconds(5));
+        boolean errorIsVisible = waitFor.until(ExpectedConditions.visibilityOf(signupPageObjects.getFailedLoginErrorMsg())).isDisplayed();
+        return errorIsVisible;
     }
 
     public void newUser(String name, String password) {

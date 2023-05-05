@@ -5,10 +5,6 @@ import org.openqa.selenium.support.FindBy;
 
 public class SignUpPageObjects {
 
-//    public SignUpPageElements(WebDriver driver) {
-//        super(driver);
-//    }
-
     @FindBy (xpath = "//form[@action=\"/login\"]//input[@type=\"email\"]")
     private WebElement loginField;
 
@@ -32,6 +28,9 @@ public class SignUpPageObjects {
 
     @FindBy(xpath = "//*[@class='signup-form']//*[contains(text(), 'New User Signup!')]")
     private WebElement signupLabel;
+
+    @FindBy(xpath = "//*[@class='login-form']//*[contains(text(), 'Your email or password is incorrect!')]")
+    private WebElement failedLoginErrorMsg;
 
     public WebElement getLoginField() {
         return loginField;
@@ -63,5 +62,9 @@ public class SignUpPageObjects {
 
     public WebElement getSignupLabel() {
         return signupLabel;
+    }
+
+    public WebElement getFailedLoginErrorMsg() {
+        return failedLoginErrorMsg;
     }
 }
