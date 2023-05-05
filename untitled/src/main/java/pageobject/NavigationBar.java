@@ -19,18 +19,14 @@ public class NavigationBar {
     @FindBy(xpath = "//*[@class='shop-menu pull-right']//*[contains(text(), 'Products')]")
     public WebElement productsButton;
 
-
     @FindBy(xpath = "//*[@class='shop-menu pull-right']//*[contains(text(), 'Cart')]")
     public WebElement cartButton;
-
 
     @FindBy(xpath = "//*[@class='shop-menu pull-right']//*[contains(text(), 'Signup / Login')]")
     public WebElement signupLoginButton;
 
-
     @FindBy(xpath = "//*[@class='shop-menu pull-right']//*[contains(text(), 'Test Cases')]")
     public WebElement testCasesButton;
-
 
     @FindBy(xpath = "//*[@class='shop-menu pull-right']//*[contains(text(), 'API Testing')]")
     public WebElement apiTestingButton;
@@ -41,6 +37,14 @@ public class NavigationBar {
     @FindBy(xpath = "//*[@class='shop-menu pull-right']//*[contains(text(), 'Contact us')]")
     public WebElement contactButton;
 
+    @FindBy(xpath = "//*[@class='shop-menu pull-right']//*[contains(text(), 'Logged in as')]")
+    public WebElement loggedUser;
+
+    @FindBy(xpath = "//*[@class='shop-menu pull-right']//*[contains(text(), 'Logout')]")
+    public WebElement logoutButton;
+
+    @FindBy(xpath = "//*[@class='shop-menu pull-right']//*[contains(text(), 'Delete account')]")
+    public WebElement deleteAccountButton;
 
     public WebElement getLogoButton() {
         return logoButton;
@@ -76,5 +80,17 @@ public class NavigationBar {
 
     public WebElement getContactButton() {
         return contactButton;
+    }
+
+    public WebElement getLoggedUser() {
+        return loggedUser;
+    }
+
+    public WebElement getLogoutButton() {
+        return logoutButton;
+    }
+
+    public WebElement getDeleteAccountButton() {
+        return deleteAccountButton;
     }
 }

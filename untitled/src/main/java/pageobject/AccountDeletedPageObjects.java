@@ -3,9 +3,9 @@ package pageobject;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class AccountCreatedPageObjects {
+public class AccountDeletedPageObjects {
 
-    @FindBy (xpath = "//h2//*[text()='Account Created!']")
+    @FindBy (xpath = "//h2//*[text()='Account Deleted!']")
     private WebElement header;
 
     @FindBy (xpath = "//*[contains(text(), 'Continue')]")

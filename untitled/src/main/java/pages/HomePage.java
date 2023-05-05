@@ -39,9 +39,27 @@ public class HomePage extends BasePage {
         Assert.isTrue(carouselAd.isDisplayed(), "Carousel Ad is not visible yet!");
     }
 
-    public SignupPage registerUser() {
+    public void waitUntilElementIsVisible(WebElement element) {
+        WebDriverWait elementIsVisible = new WebDriverWait(driver, Duration.ofSeconds(5));
+        elementIsVisible.until(ExpectedConditions.visibilityOf(element));
+        System.out.println("Element is loaded properly.");
+    }
+
+    public SignupPage registerOrLogInUser() {
         navigationBar.signupLoginButton.click();
         return new SignupPage(driver);
+    }
+
+    public String getLoggedInUsername() {
+        String loggedUsername = navigationBar.getLoggedUser().getText();
+//        remove 'Logged in as..." part
+        String selectUsername = loggedUsername.substring(13);
+        return selectUsername;
+    }
+
+    public AccountDeletedPage deleteAccount() {
+        navigationBar.getDeleteAccountButton().click();
+        return new AccountDeletedPage(driver);
     }
 
     public SubPage chooseManCategory(int type) {

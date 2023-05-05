@@ -1,10 +1,8 @@
-import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
+import pageobject.AccountDeletedPageObjects;
 import pageobject.NavigationBar;
 import pageobject.SignUpFormElements;
-import pages.HomePage;
-import pages.SignUpFormPage;
-import pages.SignupPage;
+import pages.*;
 
 
 public class Test01 extends BaseTest {
@@ -18,11 +16,10 @@ public class Test01 extends BaseTest {
     public void registerUser() {
         HomePage homePage = new HomePage(driver);
         homePage.waitUntilHomePageVisible();
-        SignupPage signupPage = homePage.registerUser();
+        SignupPage signupPage = homePage.registerOrLogInUser();
         signupPage.waitUntilElementIsVisible(signUpFormElements.getSignUpFormHeader());
         signupPage.newUser("Adam Smith", "password1");
         SignUpFormPage signUpFormPage = signupPage.submitNewUser();
-// days months years selectors
         signUpFormPage.chooseTitle("Ms");
         signUpFormPage.chooseDay(1);
         signUpFormPage.chooseMonth(1);
@@ -39,8 +36,14 @@ public class Test01 extends BaseTest {
         signUpFormPage.setCity("Georgia Town");
         signUpFormPage.setZipcode("0000-0001");
         signUpFormPage.setMobileNumber("900800700");
-        signUpFormPage.submitAccount();
-
+        AccountCreatedPage accountCreatedPage = signUpFormPage.submitAccount();
+        accountCreatedPage.waitUntilElementIsVisible();
+        accountCreatedPage.continueRegistration();
+        homePage.waitUntilElementIsVisible(navigationBar.getLoggedUser());
+        System.out.printf(homePage.getLoggedInUsername());
+        AccountDeletedPage accountDeletedPage = homePage.deleteAccount();
+        accountDeletedPage.waitUntilElementIsVisible();
+        accountDeletedPage.continueDeletion();
     }
 
     @Test

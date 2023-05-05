@@ -3,25 +3,25 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageobject.AccountCreatedPageObjects;
+import pageobject.AccountDeletedPageObjects;
 
 import java.time.Duration;
 
-public class AccountCreatedPage extends BasePage {
-    
-    private AccountCreatedPageObjects accountCreatedPageObjects;
+public class AccountDeletedPage extends BasePage {
 
-    public AccountCreatedPage(WebDriver driver) {
+    private AccountDeletedPageObjects accountDeletedPageObjects;
+
+    public AccountDeletedPage(WebDriver driver) {
         super(driver);
     }
 
     public void waitUntilElementIsVisible() {
         WebDriverWait elementIsVisible = new WebDriverWait(driver, Duration.ofSeconds(5));
-        elementIsVisible.until(ExpectedConditions.visibilityOf(accountCreatedPageObjects.getHeader()));
+        elementIsVisible.until(ExpectedConditions.visibilityOf(accountDeletedPageObjects.getHeader()));
         System.out.println("Element found properly.");
     }
 
-    public void continueRegistration() {
-        accountCreatedPageObjects.getContinueBtn().click();
+    public void continueDeletion() {
+        accountDeletedPageObjects.getContinueBtn().click();
     }
 }
