@@ -2,7 +2,6 @@ import address.PageAddress;
 import org.testng.annotations.Test;
 import pageobject.SignUpPageObjects;
 import pages.HomePage;
-import pages.SignUpFormPage;
 import pages.SignupPage;
 
 import static org.testng.AssertJUnit.assertEquals;
