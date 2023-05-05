@@ -4,13 +4,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageobject.SignUpPageElements;
+import pageobject.SignUpPageObjects;
 
 import java.time.Duration;
 
 public class SignupPage extends BasePage{
 
-    private SignUpPageElements signupElements;
+    private SignUpPageObjects signupPageObjects;
 
     public SignupPage(WebDriver driver) {
         super(driver);
@@ -23,12 +23,22 @@ public class SignupPage extends BasePage{
     }
 
     public void newUser(String name, String password) {
-        signupElements.getSignupNameField().sendKeys(name);
-        signupElements.getSignupEmailField().sendKeys(password);
+        signupPageObjects.getSignupNameField().sendKeys(name);
+        signupPageObjects.getSignupEmailField().sendKeys(password);
     }
 
     public SignUpFormPage submitNewUser() {
-        signupElements.getSignupButton().click();
+        signupPageObjects.getSignupButton().click();
         return new SignUpFormPage(driver);
+    }
+    
+    public void newLogin(String emailAddress, String password) {
+        signupPageObjects.getLoginField().sendKeys(emailAddress);
+        signupPageObjects.getLoginPasswordField().sendKeys(password);
+    }
+    
+    public HomePage submitLogin() {
+        signupPageObjects.getLoginButton().click();
+        return new HomePage(driver);
     }
 }

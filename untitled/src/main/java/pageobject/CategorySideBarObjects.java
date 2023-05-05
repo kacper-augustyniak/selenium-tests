@@ -3,7 +3,7 @@ package pageobject;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class CategorySideBar {
+public class CategorySideBarObjects {
 
     @FindBy(xpath = "//*[@id=\"Women\"]")
     private WebElement womenButton;

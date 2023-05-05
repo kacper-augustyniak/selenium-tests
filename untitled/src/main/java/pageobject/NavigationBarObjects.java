@@ -4,7 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 
-public class NavigationBar {
+public class NavigationBarObjects {
 
 //    public NavigationBar(WebDriver driver) {
 //        this.driver = driver;

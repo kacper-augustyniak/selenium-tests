@@ -1,10 +1,9 @@
 package pageobject;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class SignUpPageElements {
+public class SignUpPageObjects {
 
 //    public SignUpPageElements(WebDriver driver) {
 //        super(driver);
@@ -27,6 +26,9 @@ public class SignUpPageElements {
 
     @FindBy(xpath = "//button[text()='Signup']")
     private WebElement signupButton;
+
+    @FindBy (xpath = "//*[@class='login-form']//*[contains(text(), 'Login to your account')]")
+    private WebElement loginPageHeader;
 
     @FindBy(xpath = "//*[@class='signup-form']//*[contains(text(), 'New User Signup!')]")
     private WebElement signupLabel;
@@ -53,6 +55,10 @@ public class SignUpPageElements {
 
     public WebElement getSignupButton() {
         return signupButton;
+    }
+
+    public WebElement getLoginPageHeader() {
+        return loginPageHeader;
     }
 
     public WebElement getSignupLabel() {

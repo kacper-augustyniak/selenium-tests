@@ -5,19 +5,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageobject.SignUpFormElements;
+import pageobject.SignUpFormObjects;
 
-import javax.swing.*;
 import java.time.Duration;
-import java.util.List;
 
 public class SignUpFormPage extends BasePage {
 
-    private SignUpFormElements signUpFormElements;
+    private SignUpFormObjects signUpFormObjects;
 
     public SignUpFormPage(WebDriver driver) {
         super(driver);
-        signUpFormElements = new SignUpFormElements();
+        signUpFormObjects = new SignUpFormObjects();
     }
 
     public void waitUntilElementIsVisible(WebElement element) {
@@ -28,9 +26,9 @@ public class SignUpFormPage extends BasePage {
     public void chooseTitle(String title) {
         switch (title) {
             case "Mrs":
-                signUpFormElements.getMrButton().click();
+                signUpFormObjects.getMrButton().click();
             case "Ms":
-                signUpFormElements.getMsButton().click();
+                signUpFormObjects.getMsButton().click();
         }
     }
     public void chooseDay(int day) {
@@ -52,12 +50,12 @@ public class SignUpFormPage extends BasePage {
     // optymalizacja?
     public void chooseNwsletter(boolean active) {
         if (active) {
-            if(!signUpFormElements.getNewsletterChckbx().isSelected()) {
-                signUpFormElements.getNewsletterChckbx().click();
+            if(!signUpFormObjects.getNewsletterChckbx().isSelected()) {
+                signUpFormObjects.getNewsletterChckbx().click();
             }
         else {
-            if (signUpFormElements.getNewsletterChckbx().isSelected()) {
-                signUpFormElements.getNewsletterChckbx().click();
+            if (signUpFormObjects.getNewsletterChckbx().isSelected()) {
+                signUpFormObjects.getNewsletterChckbx().click();
 
             }
             }
@@ -66,12 +64,12 @@ public class SignUpFormPage extends BasePage {
 
     public void chooseOffers(boolean active) {
             if (active) {
-                if(!signUpFormElements.getOffersChckbx().isSelected()) {
-                    signUpFormElements.getOffersChckbx().click();
+                if(!signUpFormObjects.getOffersChckbx().isSelected()) {
+                    signUpFormObjects.getOffersChckbx().click();
                 }
                 else {
-                    if (signUpFormElements.getOffersChckbx().isSelected()) {
-                        signUpFormElements.getOffersChckbx().click();
+                    if (signUpFormObjects.getOffersChckbx().isSelected()) {
+                        signUpFormObjects.getOffersChckbx().click();
 
                     }
                 }
@@ -79,57 +77,57 @@ public class SignUpFormPage extends BasePage {
     }
 
     public void setName(String firstName) {
-        signUpFormElements.getFirstName().click();
-        signUpFormElements.getFirstName().sendKeys(firstName);
+        signUpFormObjects.getFirstName().click();
+        signUpFormObjects.getFirstName().sendKeys(firstName);
     }
 
     public void setLastName(String lastName) {
-        signUpFormElements.getLastName().click();
-        signUpFormElements.getLastName().sendKeys(lastName);
+        signUpFormObjects.getLastName().click();
+        signUpFormObjects.getLastName().sendKeys(lastName);
     }
 
     public void setCompany(String company) {
-        signUpFormElements.getCompany().click();
-        signUpFormElements.getCompany().sendKeys(company);
+        signUpFormObjects.getCompany().click();
+        signUpFormObjects.getCompany().sendKeys(company);
     }
 
     public void setAddress(String address) {
-        signUpFormElements.getAddress().click();
-        signUpFormElements.getAddress().sendKeys(address);
+        signUpFormObjects.getAddress().click();
+        signUpFormObjects.getAddress().sendKeys(address);
     }
 
     public void setAddress2(String address2) {
-        signUpFormElements.getAddress2().click();
-        signUpFormElements.getAddress2().sendKeys(address2);
+        signUpFormObjects.getAddress2().click();
+        signUpFormObjects.getAddress2().sendKeys(address2);
     }
 
     public void setState(String state) {
-        signUpFormElements.getState().click();
-        signUpFormElements.getState().sendKeys(state);
+        signUpFormObjects.getState().click();
+        signUpFormObjects.getState().sendKeys(state);
     }
 
     public void setCity(String city) {
-        signUpFormElements.getCity().click();
-        signUpFormElements.getCity().sendKeys(city);
+        signUpFormObjects.getCity().click();
+        signUpFormObjects.getCity().sendKeys(city);
     }
 
     public void setZipcode(String zipcode) {
-        signUpFormElements.getZipcode().click();
-        signUpFormElements.getZipcode().sendKeys(zipcode);
+        signUpFormObjects.getZipcode().click();
+        signUpFormObjects.getZipcode().sendKeys(zipcode);
     }
 
     public void setMobileNumber(String mobileNumber) {
-        signUpFormElements.getZipcode().click();
-        signUpFormElements.getZipcode().sendKeys(mobileNumber);
+        signUpFormObjects.getZipcode().click();
+        signUpFormObjects.getZipcode().sendKeys(mobileNumber);
     }
 
     public void pickCountry(String countryName) {
-        signUpFormElements.getCountry().click();
+        signUpFormObjects.getCountry().click();
         driver.findElement(By.xpath("//*[@id='country']//option[@value='" + countryName + "']")).click();
     }
 
     public AccountCreatedPage submitAccount() {
-        signUpFormElements.getCreateAccbtn().click();
+        signUpFormObjects.getCreateAccbtn().click();
         return new AccountCreatedPage(driver);
     }
     }

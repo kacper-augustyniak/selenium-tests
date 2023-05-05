@@ -1,6 +1,6 @@
 package pageobject;
 
-public class ProductsElements {
+public class ProductsObjects {
 
 
 }

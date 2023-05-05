@@ -1,23 +1,24 @@
 import org.testng.annotations.Test;
-import pageobject.AccountDeletedPageObjects;
-import pageobject.NavigationBar;
-import pageobject.SignUpFormElements;
+import pageobject.NavigationBarObjects;
+import pageobject.SignUpFormObjects;
+import pageobject.SignUpPageObjects;
 import pages.*;
 
 
-public class Test01 extends BaseTest {
+public class RegisterUser extends BaseTest {
 
     // dlaczego init tu musi byc - poziom wyzej?
     // widocznosc elementu - .logo.pull-left - klasa nieznajdywalna
-    private SignUpFormElements signUpFormElements = new SignUpFormElements();
-    private NavigationBar navigationBar;
+    private SignUpFormObjects signUpFormObjects = new SignUpFormObjects();
+    private SignUpPageObjects signUpPageObjects;
+    private NavigationBarObjects navigationBarObjects;
 
     @Test
     public void registerUser() {
         HomePage homePage = new HomePage(driver);
         homePage.waitUntilHomePageVisible();
         SignupPage signupPage = homePage.registerOrLogInUser();
-        signupPage.waitUntilElementIsVisible(signUpFormElements.getSignUpFormHeader());
+        signupPage.waitUntilElementIsVisible(signUpPageObjects.getSignupLabel());
         signupPage.newUser("Adam Smith", "password1");
         SignUpFormPage signUpFormPage = signupPage.submitNewUser();
         signUpFormPage.chooseTitle("Ms");
@@ -39,21 +40,10 @@ public class Test01 extends BaseTest {
         AccountCreatedPage accountCreatedPage = signUpFormPage.submitAccount();
         accountCreatedPage.waitUntilElementIsVisible();
         accountCreatedPage.continueRegistration();
-        homePage.waitUntilElementIsVisible(navigationBar.getLoggedUser());
+        homePage.waitUntilElementIsVisible(navigationBarObjects.getLoggedUser());
         System.out.printf(homePage.getLoggedInUsername());
         AccountDeletedPage accountDeletedPage = homePage.deleteAccount();
         accountDeletedPage.waitUntilElementIsVisible();
         accountDeletedPage.continueDeletion();
     }
-
-    @Test
-    public void sample() {
-        driver.get("https://automationexcersice.com");
-    }
-
-
-
-//    ProductsPage productsPage = new ProductsPage(driver);
-//    SearchResultPage searchResultPage = productsPage.searchProduct("dreees");
-//        searchResultPage.validateResult("drees");
 }

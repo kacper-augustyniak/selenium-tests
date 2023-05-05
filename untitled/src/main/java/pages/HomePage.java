@@ -5,28 +5,27 @@ import dev.failsafe.internal.util.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageobject.CategorySideBar;
-import pageobject.NavigationBar;
+import pageobject.CategorySideBarObjects;
+import pageobject.NavigationBarObjects;
 
 import java.time.Duration;
 
 public class HomePage extends BasePage {
 
-    private CategorySideBar categorySideBar;
-    private NavigationBar navigationBar;
+    private CategorySideBarObjects categorySideBarObjects;
+    private NavigationBarObjects navigationBarObjects;
     private PageAddress pageAddress;
 
 
     public HomePage(WebDriver driver) {
         super(driver);
-        navigationBar = new NavigationBar();
+        navigationBarObjects = new NavigationBarObjects();
     }
 
     public HomePage launchPage() {
-        navigationBar.getLogoButton().click();
+        navigationBarObjects.getLogoButton().click();
         return new HomePage(driver);
     }
 
@@ -46,29 +45,29 @@ public class HomePage extends BasePage {
     }
 
     public SignupPage registerOrLogInUser() {
-        navigationBar.signupLoginButton.click();
+        navigationBarObjects.signupLoginButton.click();
         return new SignupPage(driver);
     }
 
     public String getLoggedInUsername() {
-        String loggedUsername = navigationBar.getLoggedUser().getText();
+        String loggedUsername = navigationBarObjects.getLoggedUser().getText();
 //        remove 'Logged in as..." part
         String selectUsername = loggedUsername.substring(13);
         return selectUsername;
     }
 
     public AccountDeletedPage deleteAccount() {
-        navigationBar.getDeleteAccountButton().click();
+        navigationBarObjects.getDeleteAccountButton().click();
         return new AccountDeletedPage(driver);
     }
 
     public SubPage chooseManCategory(int type) {
-        categorySideBar.getMenButton().click();
+        categorySideBarObjects.getMenButton().click();
         switch (type) {
             case 1:
-                categorySideBar.getMenTshirtsButton().click();
+                categorySideBarObjects.getMenTshirtsButton().click();
             case 2:
-                categorySideBar.getMenJeansButton().click();
+                categorySideBarObjects.getMenJeansButton().click();
 
         }
         return new SubPage(driver);

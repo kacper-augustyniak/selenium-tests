@@ -1,13 +1,10 @@
 package pageobject;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.FindBys;
 
 
-public class SignUpFormElements {
+public class SignUpFormObjects {
 
     @FindBy (xpath = "//h2//*[contains(text(), 'Enter Account Information')]")
     private WebElement signUpFormHeader;
