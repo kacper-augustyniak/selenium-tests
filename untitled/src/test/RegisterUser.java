@@ -1,8 +1,10 @@
+import address.PageAddress;
 import org.testng.annotations.Test;
 import pageobject.NavigationBarObjects;
 import pageobject.SignUpFormObjects;
 import pageobject.SignUpPageObjects;
 import pages.*;
+import static org.testng.AssertJUnit.*;
 
 
 public class RegisterUser extends BaseTest {
@@ -12,6 +14,7 @@ public class RegisterUser extends BaseTest {
     private SignUpFormObjects signUpFormObjects = new SignUpFormObjects();
     private SignUpPageObjects signUpPageObjects;
     private NavigationBarObjects navigationBarObjects;
+    private PageAddress pageAddress;
 
     @Test
     public void registerUser() {
@@ -19,8 +22,10 @@ public class RegisterUser extends BaseTest {
         homePage.waitUntilHomePageVisible();
         SignupPage signupPage = homePage.registerOrLogInUser();
         signupPage.waitUntilElementIsVisible(signUpPageObjects.getSignupLabel());
+        assertEquals(pageAddress.getSignupLoginPageUrl(), getCurrentAddress());
         signupPage.newUser("Adam Smith", "password1");
         SignUpFormPage signUpFormPage = signupPage.submitNewUser();
+        assertEquals(pageAddress.getSignupPageUrl(), getCurrentAddress());
         signUpFormPage.chooseTitle("Ms");
         signUpFormPage.chooseDay(1);
         signUpFormPage.chooseMonth(1);
@@ -39,11 +44,13 @@ public class RegisterUser extends BaseTest {
         signUpFormPage.setMobileNumber("900800700");
         AccountCreatedPage accountCreatedPage = signUpFormPage.submitAccount();
         accountCreatedPage.waitUntilElementIsVisible();
+        assertEquals(pageAddress.getAccountCreatedPageUrl(), getCurrentAddress());
         accountCreatedPage.continueRegistration();
         homePage.waitUntilElementIsVisible(navigationBarObjects.getLoggedUser());
         System.out.printf(homePage.getLoggedInUsername());
         AccountDeletedPage accountDeletedPage = homePage.deleteAccount();
         accountDeletedPage.waitUntilElementIsVisible();
+        assertEquals(pageAddress.getAccountDeletedPageUrl(), getCurrentAddress());
         accountDeletedPage.continueDeletion();
     }
 }

@@ -1,3 +1,4 @@
+import address.PageAddress;
 import org.testng.annotations.Test;
 import pageobject.SignUpPageObjects;
 import pages.HomePage;
@@ -11,6 +12,7 @@ public class LoginUserFail extends BaseTest {
 
     private Random random;
     private SignUpPageObjects signUpPageObjects;
+    private PageAddress pageAddress;
     private String emailAddress = "abc@abc.pl";
     private String password = "password" + random.nextInt();
     private String username = "username";
@@ -24,5 +26,6 @@ public class LoginUserFail extends BaseTest {
         signupPage.newLogin(emailAddress, password);
         HomePage loggedUserHomePage = signupPage.submitLogin();
         assertTrue(signupPage.failedLoginErrorMessage());
+        assertEquals(pageAddress.getSignupLoginPageUrl(), getCurrentAddress());
     }
 }

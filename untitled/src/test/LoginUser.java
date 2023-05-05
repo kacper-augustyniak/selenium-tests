@@ -1,3 +1,4 @@
+import address.PageAddress;
 import org.testng.annotations.Test;
 import pageobject.NavigationBarObjects;
 import pageobject.SignUpFormObjects;
@@ -13,6 +14,7 @@ public class LoginUser extends BaseTest {
 
     private SignUpPageObjects signUpPageObjects;
     private NavigationBarObjects navigationBarObjects;
+    private PageAddress pageAddress;
 
     private String emailAddress = "qwerty001@abc.pl";
     private String password = "qwerty001";
@@ -34,6 +36,7 @@ public class LoginUser extends BaseTest {
         assertEquals(homePage.getLoggedInUsername(), username);
         AccountDeletedPage accountDeletedPage = homePage.deleteAccount();
         accountDeletedPage.waitUntilElementIsVisible();
+        assertEquals(pageAddress.getAccountDeletedPageUrl(), getCurrentAddress());
         accountDeletedPage.continueDeletion();
         }
 }

@@ -11,6 +11,12 @@ public class PageAddress {
     protected String videoTutorialsPageUrl = "https://www.youtube.com/c/AutomationExercise";
     protected String contactUsPageUrl = "https://automationexercise.com/contact_us";
 
+    protected String signupPageUrl = "https://automationexercise.com/signup";
+
+    protected String accountCreatedPageUrl = "https://automationexercise.com/account_created";
+
+    protected String accountDeletedPageUrl = "https://automationexercise.com/delete_account";
+
     public String getHomePageUrl() {
         return homePageUrl;
     }
@@ -41,5 +47,17 @@ public class PageAddress {
 
     public String getContactUsPageUrl() {
         return contactUsPageUrl;
+    }
+
+    public String getSignupPageUrl() {
+        return signupPageUrl;
+    }
+
+    public String getAccountCreatedPageUrl() {
+        return accountCreatedPageUrl;
+    }
+
+    public String getAccountDeletedPageUrl() {
+        return accountDeletedPageUrl;
     }
 }

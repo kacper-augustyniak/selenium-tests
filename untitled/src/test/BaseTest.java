@@ -26,13 +26,15 @@ public class BaseTest {
         driver = new ChromeDriver(options);
         // uzycie WebDriverManagera
         driver.get(pageAddress.getHomePageUrl());
-
-
     }
 
     @AfterTest
     public void quit() {
         driver.close();
         driver.quit();
+    }
+
+    public String getCurrentAddress() {
+        return driver.getCurrentUrl();
     }
 }
