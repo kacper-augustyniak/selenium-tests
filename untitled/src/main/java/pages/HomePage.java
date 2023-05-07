@@ -1,7 +1,6 @@
 package pages;
 
 import address.PageAddress;
-import dev.failsafe.internal.util.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageobject.CategorySideBarObjects;
 import pageobject.NavigationBarObjects;
+import static org.testng.AssertJUnit.*;
 
 import java.time.Duration;
 
@@ -34,8 +34,8 @@ public class HomePage extends BasePage {
                 until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector(".logo.pull-left"))));
         WebElement carouselAd = new WebDriverWait(driver, Duration.ofSeconds(5)).
                 until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector(".carousel-inner"))));
-        Assert.isTrue(logoIsVisible.isDisplayed(), "Logo is not visible yet!");
-        Assert.isTrue(carouselAd.isDisplayed(), "Carousel Ad is not visible yet!");
+        assertEquals(logoIsVisible.isDisplayed(), "Logo is not visible yet!");
+        assertEquals(carouselAd.isDisplayed(), "Carousel Ad is not visible yet!");
     }
 
     public void waitUntilElementIsVisible(WebElement element) {
@@ -64,6 +64,11 @@ public class HomePage extends BasePage {
     public HomePage logoutUser() {
         navigationBarObjects.logoutButton.click();
         return new HomePage(driver);
+    }
+
+    public ContactUsFormPage openContactUsForm() {
+        navigationBarObjects.getContactButton().click();
+        return new ContactUsFormPage(driver);
     }
 
     public SubPage chooseManCategory(int type) {
