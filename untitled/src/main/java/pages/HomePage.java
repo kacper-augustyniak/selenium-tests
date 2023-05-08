@@ -21,7 +21,7 @@ public class HomePage extends BasePage {
 
     public HomePage(WebDriver driver) {
         super(driver);
-        navigationBarObjects = new NavigationBarObjects();
+        navigationBarObjects = new NavigationBarObjects(driver);
     }
 
     public HomePage launchPage() {
@@ -34,14 +34,12 @@ public class HomePage extends BasePage {
                 until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector(".logo.pull-left"))));
         WebElement carouselAd = new WebDriverWait(driver, Duration.ofSeconds(5)).
                 until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector(".carousel-inner"))));
-        assertEquals(logoIsVisible.isDisplayed(), "Logo is not visible yet!");
-        assertEquals(carouselAd.isDisplayed(), "Carousel Ad is not visible yet!");
+        assertEquals(logoIsVisible.isDisplayed(), true);
+        assertEquals(carouselAd.isDisplayed(), true);
     }
 
     public void waitUntilElementIsVisible(WebElement element) {
-        WebDriverWait elementIsVisible = new WebDriverWait(driver, Duration.ofSeconds(5));
-        elementIsVisible.until(ExpectedConditions.visibilityOf(element));
-        System.out.println("Element is loaded properly.");
+        waitForWebElement(element);
     }
 
     public SignupPage registerOrLogInUser() {
@@ -71,21 +69,26 @@ public class HomePage extends BasePage {
         return new ContactUsFormPage(driver);
     }
 
-    public SubPage chooseManCategory(int type) {
-        categorySideBarObjects.getMenButton().click();
-        switch (type) {
-            case 1:
-                categorySideBarObjects.getMenTshirtsButton().click();
-            case 2:
-                categorySideBarObjects.getMenJeansButton().click();
-
-        }
-        return new SubPage(driver);
+    public TestCasesPage openTestCases() {
+        navigationBarObjects.testCasesButton.click();
+        return new TestCasesPage(driver);
     }
 
-//    public SubPage chooseBrand(int value) {
+//    public SubPage chooseManCategory(int type) {
+//        categorySideBarObjects.getMenButton().click();
+//        switch (type) {
+//            case 1:
+//                categorySideBarObjects.getMenTshirtsButton().click();
+//            case 2:
+//                categorySideBarObjects.getMenJeansButton().click();
 //
-//        return SubPage;
+//        }
+//        return new SubPage(driver);
 //    }
+//
+////    public SubPage chooseBrand(int value) {
+////
+////        return SubPage;
+////    }
 
 }

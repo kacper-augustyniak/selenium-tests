@@ -1,11 +1,17 @@
 package pageobject;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import javax.xml.xpath.XPath;
 
 public class ContactUsFormPageObjects {
+
+    public ContactUsFormPageObjects(WebDriver driver) {
+        PageFactory.initElements(driver, this);
+    }
 
     @FindBy (xpath = "//*[@class='contact-form']//*[contains(text(), 'Get In Touch')]")
     private WebElement header;

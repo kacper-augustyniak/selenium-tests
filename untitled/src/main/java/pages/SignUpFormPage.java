@@ -19,8 +19,7 @@ public class SignUpFormPage extends BasePage {
     }
 
     public void waitUntilElementIsVisible(WebElement element) {
-        WebDriverWait waitFor = new WebDriverWait(driver, Duration.ofSeconds(5));
-        waitFor.until(ExpectedConditions.visibilityOf(element));
+        waitForWebElement(element);
     }
 
     public void chooseTitle(String title) {

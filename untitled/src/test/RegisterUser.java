@@ -51,13 +51,13 @@ public class RegisterUser extends BaseTest {
         signUpFormPage.setZipcode("0000-0001");
         signUpFormPage.setMobileNumber("900800700");
         AccountCreatedPage accountCreatedPage = signUpFormPage.submitAccount();
-        accountCreatedPage.waitUntilElementIsVisible();
+        accountCreatedPage.waitUntilPageIsDisplayed();
         assertEquals(pageAddress.getAccountCreatedPageUrl(), getCurrentAddress());
         accountCreatedPage.continueRegistration();
         homePage.waitUntilElementIsVisible(navigationBarObjects.getLoggedUser());
         System.out.printf(homePage.getLoggedInUsername());
         AccountDeletedPage accountDeletedPage = homePage.deleteAccount();
-        accountDeletedPage.waitUntilElementIsVisible();
+        accountDeletedPage.waitUntilPageIsDisplayed();
         assertEquals(pageAddress.getAccountDeletedPageUrl(), getCurrentAddress());
         accountDeletedPage.continueDeletion();
     }

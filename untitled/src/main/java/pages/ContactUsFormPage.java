@@ -13,12 +13,11 @@ public class ContactUsFormPage extends BasePage {
     private ContactUsFormPageObjects contactUsFormPageObjects;
     public ContactUsFormPage(WebDriver driver) {
         super(driver);
+        contactUsFormPageObjects = new ContactUsFormPageObjects(driver);
     }
 
     public void waitUntilElementIsVisible(WebElement element) {
-        WebDriverWait elementIsVisible = new WebDriverWait(driver, Duration.ofSeconds(5));
-        elementIsVisible.until(ExpectedConditions.visibilityOf(element));
-        System.out.println("Element is loaded properly.");
+        waitForWebElement(element);
     }
 
     public void submitData(String name, String email, String subject) {

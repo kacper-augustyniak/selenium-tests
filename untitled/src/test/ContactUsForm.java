@@ -8,14 +8,14 @@ import static org.testng.AssertJUnit.*;
 
 public class ContactUsForm extends BaseTest {
 
-    private WaitUtils wait;
-    private ContactUsFormPageObjects contactUsFormPageObjects;
-    private PageAddress pageAddress;
+    private WaitUtils wait = new WaitUtils(driver);
+    private ContactUsFormPageObjects contactUsFormPageObjects = new ContactUsFormPageObjects(driver);
+    private PageAddress pageAddress = new PageAddress(driver);
 
     private String filePath = "C:\\_dane\\foto\\IMG20221224200627.jpg";
 
     private String name = "John Smith";
-    private String email = "jonsmith@email.com";
+    private String email = "johnsmith@email.com";
     private String subject = "Hello world";
     private String message = "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ";
 

@@ -10,7 +10,7 @@ import java.time.Duration;
 
 public class BaseTest {
 
-    private PageAddress pageAddress = new PageAddress();
+    String getHomePageUrl = "https://automationexercise.com/";
 
     WebDriver driver;
     String driverPath = "C:\\_dane\\_projekty\\chromedriver112.exe";
@@ -25,7 +25,7 @@ public class BaseTest {
         options.addArguments("--start-maximized");
         driver = new ChromeDriver(options);
         // uzycie WebDriverManagera
-        driver.get(pageAddress.getHomePageUrl());
+        driver.get(getHomePageUrl);
     }
 
     @AfterTest

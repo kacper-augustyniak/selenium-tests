@@ -17,8 +17,7 @@ public class SignupPage extends BasePage{
     }
 
     public void waitUntilElementIsVisible(WebElement element) {
-        WebDriverWait waitFor = new WebDriverWait(driver, Duration.ofSeconds(5));
-        waitFor.until(ExpectedConditions.visibilityOf(element));
+        waitForWebElement(element);
     }
 
     public boolean failedLoginErrorMessage() {

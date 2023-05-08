@@ -15,10 +15,8 @@ public class AccountCreatedPage extends BasePage {
         super(driver);
     }
 
-    public void waitUntilElementIsVisible() {
-        WebDriverWait elementIsVisible = new WebDriverWait(driver, Duration.ofSeconds(5));
-        elementIsVisible.until(ExpectedConditions.visibilityOf(accountCreatedPageObjects.getHeader()));
-        System.out.println("Element found properly.");
+    public void waitUntilPageIsDisplayed() {
+        waitForWebElement(accountCreatedPageObjects.getHeader());
     }
 
     public void continueRegistration() {

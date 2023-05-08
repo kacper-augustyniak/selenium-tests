@@ -35,7 +35,7 @@ public class LoginUser extends BaseTest {
         loggedUserHomePage.waitUntilElementIsVisible(navigationBarObjects.getLoggedUser());
         assertEquals(homePage.getLoggedInUsername(), username);
         AccountDeletedPage accountDeletedPage = homePage.deleteAccount();
-        accountDeletedPage.waitUntilElementIsVisible();
+        accountDeletedPage.waitUntilPageIsDisplayed();
         assertEquals(pageAddress.getAccountDeletedPageUrl(), getCurrentAddress());
         accountDeletedPage.continueDeletion();
         }

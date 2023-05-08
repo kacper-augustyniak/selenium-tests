@@ -15,10 +15,8 @@ public class AccountDeletedPage extends BasePage {
         super(driver);
     }
 
-    public void waitUntilElementIsVisible() {
-        WebDriverWait elementIsVisible = new WebDriverWait(driver, Duration.ofSeconds(5));
-        elementIsVisible.until(ExpectedConditions.visibilityOf(accountDeletedPageObjects.getHeader()));
-        System.out.println("Element found properly.");
+    public void waitUntilPageIsDisplayed() {
+        waitForWebElement(accountDeletedPageObjects.getHeader());
     }
 
     public void continueDeletion() {
