@@ -74,6 +74,11 @@ public class HomePage extends BasePage {
         return new TestCasesPage(driver);
     }
 
+    public ProductsPage openProducts() {
+        navigationBarObjects.getProductsButton().click();
+        return new ProductsPage(driver);
+    }
+
 //    public SubPage chooseManCategory(int type) {
 //        categorySideBarObjects.getMenButton().click();
 //        switch (type) {
