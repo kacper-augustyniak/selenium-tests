@@ -4,10 +4,13 @@ import address.PageAddress;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageobject.CategorySideBarObjects;
 import pageobject.NavigationBarObjects;
+import pagestructure.FooterObjects;
+
 import static org.testng.AssertJUnit.*;
 
 import java.time.Duration;
@@ -16,6 +19,8 @@ public class HomePage extends BasePage {
 
     private CategorySideBarObjects categorySideBarObjects;
     private NavigationBarObjects navigationBarObjects;
+
+    private FooterObjects footerObjects;
     private PageAddress pageAddress;
 
 
@@ -72,6 +77,17 @@ public class HomePage extends BasePage {
     public TestCasesPage openTestCases() {
         navigationBarObjects.testCasesButton.click();
         return new TestCasesPage(driver);
+    }
+
+    public void scrollToElementById(WebElement element) {
+        Actions actions = new Actions(driver);
+        actions.scrollToElement(element).perform();
+    }
+
+    public void createSubscription(String email) {
+        footerObjects.getEmailToSubscribe().sendKeys(email);
+        footerObjects.getSubscribeBtn();
+
     }
 
 //    public SubPage chooseManCategory(int type) {
