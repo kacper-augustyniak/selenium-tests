@@ -79,6 +79,11 @@ public class HomePage extends BasePage {
         return new TestCasesPage(driver);
     }
 
+    public CartPage openCart() {
+        navigationBarObjects.getCartButton().click();
+        return new CartPage(driver);
+    }
+
     public void scrollToElementById(WebElement element) {
         Actions actions = new Actions(driver);
         actions.scrollToElement(element).perform();
@@ -87,7 +92,6 @@ public class HomePage extends BasePage {
     public void createSubscription(String email) {
         footerObjects.getEmailToSubscribe().sendKeys(email);
         footerObjects.getSubscribeBtn();
-
     }
 
 //    public SubPage chooseManCategory(int type) {
