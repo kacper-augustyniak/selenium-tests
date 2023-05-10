@@ -87,7 +87,6 @@ public class HomePage extends BasePage {
     public void createSubscription(String email) {
         footerObjects.getEmailToSubscribe().sendKeys(email);
         footerObjects.getSubscribeBtn();
-
     }
 
 //    public SubPage chooseManCategory(int type) {
@@ -106,5 +105,4 @@ public class HomePage extends BasePage {
 ////
 ////        return SubPage;
 ////    }
-
 }
