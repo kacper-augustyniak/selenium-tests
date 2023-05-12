@@ -15,7 +15,7 @@ public class ProductsObjects {
     public WebElement productsList;
 
 //    ???
-    @FindBy (className = ".product-image-wrapper .choose .fa")
+    @FindBy (className = "product-image-wrapper choose fa")
     private WebElement viewProductbtn;
 
     public WebElement getHeader() {

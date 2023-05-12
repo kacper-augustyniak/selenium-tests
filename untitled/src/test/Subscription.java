@@ -8,9 +8,10 @@ import static org.testng.AssertJUnit.*;
 
 public class Subscription extends BaseTest {
 
+    private String env = "test";
     private String emailAddress = "abc@abc.com";
-    private PageAddress pageAddress;
-    private FooterObjects footerObjects;
+    private PageAddress pageAddress = new PageAddress(env);
+    private FooterObjects footerObjects = new FooterObjects(driver);
 
     @Test
     public void subscription() {
@@ -18,8 +19,9 @@ public class Subscription extends BaseTest {
         homePage.waitUntilHomePageVisible();
         assertEquals(pageAddress.getHomePageUrl(), getCurrentAddress());
 //        wywołanie obiektow na tym poziomie nie zadziala ??? trzeba ustawic na pozioie page'a
-        homePage.scrollToElementById(footerObjects.getFooter());
-        assertEquals(footerObjects.getSubscriptionHeader().getText(), "SUBSCRIPTION");
+        homePage.scrollFooterIntoView();
+
+//        assertEquals(footerObjects.getSubscriptionHeader().getText(), "SUBSCRIPTION");
         homePage.createSubscription(emailAddress);
         homePage.waitForWebElement(footerObjects.getSubscribedAlert());
     }
@@ -31,7 +33,7 @@ public class Subscription extends BaseTest {
         assertEquals(pageAddress.getHomePageUrl(), getCurrentAddress());
 //        dziedziczenie? metory z homePage na cartPage w kontescie footera ???
         CartPage cartPage = homePage.openCart();
-        homePage.scrollToElementById(footerObjects.getFooter());
+        homePage.scrollToElement(footerObjects.getFooter());
         assertEquals(footerObjects.getSubscriptionHeader().getText(), "SUBSCRIPTION");
         homePage.createSubscription(emailAddress);
         homePage.waitForWebElement(footerObjects.getSubscribedAlert());

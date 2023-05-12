@@ -21,7 +21,7 @@ public class ProductsAndDetailsVerify extends BaseTest {
         assertEquals(pageAddress.getProductsPageUrl(), getCurrentAddress());
         assertTrue(productsPage.productsPageHeaderIsVisible());
         assertTrue(productsPage.productsListIsPresent());
-        SingleProductPage singleProductPage = productsPage.chooseProductFromList(1);
+        SingleProductPage singleProductPage = productsPage.viewProductFromList(1);
         singleProductPage.waitForProductToBeVisible();
 //      verify objects for avail, cond, brand TBD
     }

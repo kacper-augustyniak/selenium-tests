@@ -10,7 +10,7 @@ import static org.testng.AssertJUnit.assertFalse;
 
 public class LogoutUser extends BaseTest {
 
-    private SignUpPageObjects signUpPageObjects;
+    private SignUpPageObjects signUpPageObjects = new SignUpPageObjects();
     private NavigationBarObjects navigationBarObjects;
     private PageAddress pageAddress;
 

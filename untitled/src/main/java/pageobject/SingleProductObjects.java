@@ -19,8 +19,8 @@ public class SingleProductObjects {
 
     @FindBy (xpath = "")
     private WebElement brand;
-
-//    //*[@class='product-information']//p/b/following-sibling::text() ???
+//availability
+    //*[@class='product-information']//p/b[contains(text(), 'Availability')]/following-sibling::text()
 
 
     public WebElement getProductName() {

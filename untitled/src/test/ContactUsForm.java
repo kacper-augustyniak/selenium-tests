@@ -7,10 +7,10 @@ import utils.WaitUtils;
 import static org.testng.AssertJUnit.*;
 
 public class ContactUsForm extends BaseTest {
-
+    private String env;
     private WaitUtils wait = new WaitUtils(driver);
     private ContactUsFormPageObjects contactUsFormPageObjects = new ContactUsFormPageObjects(driver);
-    private PageAddress pageAddress = new PageAddress(driver);
+    private PageAddress pageAddress = new PageAddress(env);
 
     private String filePath = "C:\\_dane\\foto\\IMG20221224200627.jpg";
 

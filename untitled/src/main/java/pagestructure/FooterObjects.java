@@ -1,9 +1,20 @@
 package pagestructure;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import pages.BasePage;
 
-public class FooterObjects {
+public class FooterObjects extends BasePage {
+
+//    public FooterObjects(WebElement driver) {
+//        PageFactory.initElements(driver, this);
+//    }
+
+    public FooterObjects(WebDriver driver) {
+        super(driver);
+    }
 
     @FindBy (id = "footer")
     private WebElement footer;

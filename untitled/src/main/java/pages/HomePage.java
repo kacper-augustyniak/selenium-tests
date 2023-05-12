@@ -4,7 +4,6 @@ import address.PageAddress;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageobject.CategorySideBarObjects;
@@ -27,6 +26,7 @@ public class HomePage extends BasePage {
     public HomePage(WebDriver driver) {
         super(driver);
         navigationBarObjects = new NavigationBarObjects(driver);
+        footerObjects = new FooterObjects(driver);
     }
 
     public HomePage launchPage() {
@@ -84,10 +84,17 @@ public class HomePage extends BasePage {
         return new CartPage(driver);
     }
 
-    public void scrollToElementById(WebElement element) {
-        Actions actions = new Actions(driver);
-        actions.scrollToElement(element).perform();
+    public ProductsPage openProducts() {
+        navigationBarObjects.getProductsButton().click();
+        return new ProductsPage(driver);
     }
+
+    public HomePage scrollFooterIntoView(){
+        scrollToElement(footerObjects.getFooter());
+
+        return new HomePage(driver);
+    }
+
 
     public void createSubscription(String email) {
         footerObjects.getEmailToSubscribe().sendKeys(email);

@@ -5,8 +5,11 @@ import org.openqa.selenium.support.PageFactory;
 
 public class PageAddress {
 
-    public PageAddress(WebDriver driver) {
-        PageFactory.initElements(driver, this);
+
+    private String env;
+
+    public PageAddress(String env) {
+        this.env = env;
     }
 
     protected String homePageUrl = "https://automationexercise.com/";

@@ -1,8 +1,10 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -34,15 +36,28 @@ public class ProductsPage extends BasePage{
 
     public boolean productsListIsPresent() {
         List<WebElement> products;
-        products = driver.findElements(By.cssSelector(".feature_items .col-sm-4"));
+        products = driver.findElements(By.xpath("//*[@class='features_items']//*[@class='col-sm-4']"));
         if(products.size() > 10 && products != null) {
             return true;
         } else {
             return false;
         }
+
+
+
+
     }
+
+    public void productListIsPresent1(){
+        WebElement products1 = driver.findElement(By.xpath("//*[@class='features_items']"));
+
+        products1.findElement(By.xpath("//*[@class='col-sm-4']"));
+
+    }
+
+
 //    ???
-    public SingleProductPage chooseProductFromList(int productNumber) {
+    public SingleProductPage viewProductFromList(int productNumber) {
         List<WebElement> products = driver.findElements(By.className("col-sm-4"));
 //        view Product plus button is selected from DOM tree
         driver.findElement
@@ -51,10 +66,26 @@ public class ProductsPage extends BasePage{
         return new SingleProductPage(driver);
     }
 
-    public SearchResultPage searchProduct(String name){
-        // akcja wpisania stringa name do inputu searchInput
-        // akcja kliknięcia na lupkę
-        return new SearchResultPage(driver);
-
+    public void selectFirstProduct() throws InterruptedException {
+//        scroll page so products are on top
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0, 500)");
+//        hover over first product - image
+        WebElement element = driver.findElement
+                (By.xpath("//*[@class='features_items']//*[@class='col-sm-4'][1]"));
+        Actions hover = new Actions(driver);
+        hover.scrollToElement(element).moveToElement(element).perform();
+//      click the button that appears after hover action above
+        driver.findElement
+                        (By.xpath("//*[@class='single-products']//*[@class='product-overlay']//*[@data-product-id='1']"))
+                .click();
+        Thread.sleep(3000);
     }
+
+//    public SearchResultPage searchProduct(String name){
+//        // akcja wpisania stringa name do inputu searchInput
+//        // akcja kliknięcia na lupkę
+//        return new SearchResultPage(driver);
+
+
 }
