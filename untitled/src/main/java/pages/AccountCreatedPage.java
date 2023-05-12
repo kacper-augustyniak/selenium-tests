@@ -1,11 +1,7 @@
 package pages;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pageobject.AccountCreatedPageObjects;
-
-import java.time.Duration;
 
 public class AccountCreatedPage extends BasePage {
     
@@ -13,9 +9,10 @@ public class AccountCreatedPage extends BasePage {
 
     public AccountCreatedPage(WebDriver driver) {
         super(driver);
+        accountCreatedPageObjects = new AccountCreatedPageObjects();
     }
 
-    public void waitUntilPageIsDisplayed() {
+    public void waitUntilHeaderIsDisplayed() {
         waitForWebElement(accountCreatedPageObjects.getHeader());
     }
 

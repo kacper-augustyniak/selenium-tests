@@ -3,13 +3,13 @@ package pageobject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import pages.BasePage;
 
 
-public class NavigationBarObjects {
+public class NavigationBarObjects extends BasePage {
 
     public NavigationBarObjects(WebDriver driver) {
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     @FindBy(className = ".logo.pull-left")
@@ -45,7 +45,7 @@ public class NavigationBarObjects {
     @FindBy(xpath = "//*[@class='shop-menu pull-right']//*[contains(text(), 'Logout')]")
     public WebElement logoutButton;
 
-    @FindBy(xpath = "//*[@class='shop-menu pull-right']//*[contains(text(), 'Delete account')]")
+    @FindBy(xpath = "//*[@class='shop-menu pull-right']//*[contains(text(), 'Delete Account')]")
     public WebElement deleteAccountButton;
 
     public WebElement getLogoButton() {

@@ -14,10 +14,7 @@ public class SignupPage extends BasePage{
 
     public SignupPage(WebDriver driver) {
         super(driver);
-    }
-
-    public void waitUntilElementIsVisible(WebElement element) {
-        waitForWebElement(element);
+        signupPageObjects = new SignUpPageObjects(driver);
     }
 
     public boolean failedLoginErrorMessage() {
@@ -50,5 +47,13 @@ public class SignupPage extends BasePage{
     public HomePage submitLogin() {
         signupPageObjects.getLoginButton().click();
         return new HomePage(driver);
+    }
+
+    public void waitUntilSignUpLabelIsVisible() {
+        waitForWebElement(signupPageObjects.getSignupLabel());
+    }
+
+    public void waitUntilLoginPageHeaderIsVisible() {
+        waitForWebElement(signupPageObjects.getLoginPageHeader());
     }
 }

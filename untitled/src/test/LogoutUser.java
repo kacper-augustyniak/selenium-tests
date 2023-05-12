@@ -10,10 +10,7 @@ import static org.testng.AssertJUnit.assertFalse;
 
 public class LogoutUser extends BaseTest {
 
-    private SignUpPageObjects signUpPageObjects = new SignUpPageObjects();
-    private NavigationBarObjects navigationBarObjects;
     private PageAddress pageAddress;
-
     private String emailAddress = "qwerty001@abc.pl";
     private String password = "qwerty001";
     private String username = "qwerty001";
@@ -23,15 +20,15 @@ public class LogoutUser extends BaseTest {
         HomePage homePage = new HomePage(driver);
         homePage.waitUntilHomePageVisible();
         SignupPage signupPage = homePage.registerOrLogInUser();
-        signupPage.waitUntilElementIsVisible(signUpPageObjects.getLoginPageHeader());
+        signupPage.waitUntilLoginPageHeaderIsVisible();
         signupPage.newLogin(emailAddress, password);
         HomePage loggedUserHomePage = signupPage.submitLogin();
 //        string for logged user is visible except username
-        loggedUserHomePage.waitUntilElementIsVisible(navigationBarObjects.getLoggedUser());
+        loggedUserHomePage.waitUntilLoggedUserIsVisible();
         assertEquals(homePage.getLoggedInUsername(), username);
         loggedUserHomePage.logoutUser();
         loggedUserHomePage.waitUntilHomePageVisible();
         assertEquals(pageAddress.getHomePageUrl(), getCurrentAddress());
-        assertFalse(navigationBarObjects.getLoggedUser().isDisplayed());
+        assertFalse(loggedUserHomePage.loggedUserInfoPresent());
     }
 }

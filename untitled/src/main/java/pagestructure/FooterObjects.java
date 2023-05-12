@@ -8,10 +8,6 @@ import pages.BasePage;
 
 public class FooterObjects extends BasePage {
 
-//    public FooterObjects(WebElement driver) {
-//        PageFactory.initElements(driver, this);
-//    }
-
     public FooterObjects(WebDriver driver) {
         super(driver);
     }

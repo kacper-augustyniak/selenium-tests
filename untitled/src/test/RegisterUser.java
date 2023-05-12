@@ -11,15 +11,12 @@ import static org.testng.AssertJUnit.*;
 
 
 public class RegisterUser extends BaseTest {
-
-    // dlaczego init tu musi byc - poziom wyzej?
-    // widocznosc elementu - .logo.pull-left - klasa nieznajdywalna
-    private SignUpFormObjects signUpFormObjects = new SignUpFormObjects();
-    private SignUpPageObjects signUpPageObjects;
-    private NavigationBarObjects navigationBarObjects;
+//    private SignUpFormObjects signUpFormObjects = new SignUpFormObjects();
+//    private SignUpPageObjects signUpPageObjects;
+//    private NavigationBarObjects navigationBarObjects;
     private PageAddress pageAddress;
 
-    private Random random;
+    private Random random = new Random();
 
     private String username = random.nextInt() + "name";
     private String emailAddress = random.nextInt() + "@abc.com";
@@ -29,7 +26,7 @@ public class RegisterUser extends BaseTest {
         HomePage homePage = new HomePage(driver);
         homePage.waitUntilHomePageVisible();
         SignupPage signupPage = homePage.registerOrLogInUser();
-        signupPage.waitUntilElementIsVisible(signUpPageObjects.getSignupLabel());
+        signupPage.waitUntilSignUpLabelIsVisible();
         assertEquals(pageAddress.getSignupLoginPageUrl(), getCurrentAddress());
         signupPage.newUser(username, emailAddress);
         SignUpFormPage signUpFormPage = signupPage.submitNewUser();
@@ -51,10 +48,10 @@ public class RegisterUser extends BaseTest {
         signUpFormPage.setZipcode("0000-0001");
         signUpFormPage.setMobileNumber("900800700");
         AccountCreatedPage accountCreatedPage = signUpFormPage.submitAccount();
-        accountCreatedPage.waitUntilPageIsDisplayed();
+        accountCreatedPage.waitUntilHeaderIsDisplayed();
         assertEquals(pageAddress.getAccountCreatedPageUrl(), getCurrentAddress());
         accountCreatedPage.continueRegistration();
-        homePage.waitUntilElementIsVisible(navigationBarObjects.getLoggedUser());
+        homePage.waitUntilLoggedUserIsVisible();
         System.out.printf(homePage.getLoggedInUsername());
         AccountDeletedPage accountDeletedPage = homePage.deleteAccount();
         accountDeletedPage.waitUntilPageIsDisplayed();

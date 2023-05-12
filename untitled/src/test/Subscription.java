@@ -10,7 +10,7 @@ public class Subscription extends BaseTest {
 
     private String env = "test";
     private String emailAddress = "abc@abc.com";
-    private PageAddress pageAddress = new PageAddress(env);
+    private PageAddress pageAddress = new PageAddress(env, driver);
     private FooterObjects footerObjects = new FooterObjects(driver);
 
     @Test

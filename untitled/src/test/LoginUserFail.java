@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class LoginUserFail extends BaseTest {
 
-    private Random random;
+    private Random random = new Random();
     private SignUpPageObjects signUpPageObjects;
     private PageAddress pageAddress;
     private String emailAddress = "abc@abc.pl";
@@ -22,7 +22,7 @@ public class LoginUserFail extends BaseTest {
         HomePage homePage = new HomePage(driver);
         homePage.waitUntilHomePageVisible();
         SignupPage signupPage = homePage.registerOrLogInUser();
-        signupPage.waitUntilElementIsVisible(signUpPageObjects.getLoginPageHeader());
+        signupPage.waitUntilLoginPageHeaderIsVisible();
         signupPage.newLogin(emailAddress, password);
         HomePage loggedUserHomePage = signupPage.submitLogin();
         assertTrue(signupPage.failedLoginErrorMessage());

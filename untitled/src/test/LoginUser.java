@@ -9,11 +9,6 @@ import pages.SignupPage;
 import static org.testng.AssertJUnit.*;
 
 public class LoginUser extends BaseTest {
-
-    private SignUpFormObjects signUpFormObjects;
-
-    private SignUpPageObjects signUpPageObjects;
-    private NavigationBarObjects navigationBarObjects;
     private PageAddress pageAddress;
 
     private String emailAddress = "qwerty001@abc.pl";
@@ -28,11 +23,11 @@ public class LoginUser extends BaseTest {
         HomePage homePage = new HomePage(driver);
         homePage.waitUntilHomePageVisible();
         SignupPage signupPage = homePage.registerOrLogInUser();
-        signupPage.waitUntilElementIsVisible(signUpPageObjects.getLoginPageHeader());
+        signupPage.waitUntilLoginPageHeaderIsVisible();
         signupPage.newLogin(emailAddress, password);
         HomePage loggedUserHomePage = signupPage.submitLogin();
 //        string for logged user is visible except username
-        loggedUserHomePage.waitUntilElementIsVisible(navigationBarObjects.getLoggedUser());
+        loggedUserHomePage.waitUntilLoggedUserIsVisible();
         assertEquals(homePage.getLoggedInUsername(), username);
         AccountDeletedPage accountDeletedPage = homePage.deleteAccount();
         accountDeletedPage.waitUntilPageIsDisplayed();

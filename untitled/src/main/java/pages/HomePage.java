@@ -16,6 +16,8 @@ import java.time.Duration;
 
 public class HomePage extends BasePage {
 
+    private String env = "test";
+
     private CategorySideBarObjects categorySideBarObjects;
     private NavigationBarObjects navigationBarObjects;
 
@@ -27,6 +29,7 @@ public class HomePage extends BasePage {
         super(driver);
         navigationBarObjects = new NavigationBarObjects(driver);
         footerObjects = new FooterObjects(driver);
+        pageAddress = new PageAddress(env, driver);
     }
 
     public HomePage launchPage() {
@@ -43,12 +46,11 @@ public class HomePage extends BasePage {
         assertEquals(carouselAd.isDisplayed(), true);
     }
 
-    public void waitUntilElementIsVisible(WebElement element) {
-        waitForWebElement(element);
+    public void waitUntilLoggedUserIsVisible() {
+        waitForWebElement(navigationBarObjects.getLoggedUser());
     }
-
     public SignupPage registerOrLogInUser() {
-        navigationBarObjects.signupLoginButton.click();
+        navigationBarObjects.getSignupLoginButton().click();
         return new SignupPage(driver);
     }
 
@@ -65,7 +67,7 @@ public class HomePage extends BasePage {
     }
 
     public HomePage logoutUser() {
-        navigationBarObjects.logoutButton.click();
+        navigationBarObjects.getLogoutButton().click();
         return new HomePage(driver);
     }
 
@@ -95,26 +97,12 @@ public class HomePage extends BasePage {
         return new HomePage(driver);
     }
 
-
     public void createSubscription(String email) {
         footerObjects.getEmailToSubscribe().sendKeys(email);
         footerObjects.getSubscribeBtn();
     }
 
-//    public SubPage chooseManCategory(int type) {
-//        categorySideBarObjects.getMenButton().click();
-//        switch (type) {
-//            case 1:
-//                categorySideBarObjects.getMenTshirtsButton().click();
-//            case 2:
-//                categorySideBarObjects.getMenJeansButton().click();
-//
-//        }
-//        return new SubPage(driver);
-//    }
-//
-////    public SubPage chooseBrand(int value) {
-////
-////        return SubPage;
-////    }
+    public boolean loggedUserInfoPresent() {
+        return navigationBarObjects.getLoggedUser().isDisplayed();
+    }
 }

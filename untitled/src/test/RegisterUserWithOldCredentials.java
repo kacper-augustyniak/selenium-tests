@@ -18,7 +18,7 @@ public class RegisterUserWithOldCredentials extends BaseTest {
         HomePage homePage = new HomePage(driver);
         homePage.waitUntilHomePageVisible();
         SignupPage signupPage = homePage.registerOrLogInUser();
-        signupPage.waitUntilElementIsVisible(signUpPageObjects.getSignupLabel());
+        signupPage.waitUntilSignUpLabelIsVisible();
         assertEquals(pageAddress.getSignupLoginPageUrl(), getCurrentAddress());
         signupPage.newUser(username, emailAddress);
         signupPage.submitNewUser();

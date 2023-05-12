@@ -1,15 +1,13 @@
 package address;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
 
 public class PageAddress {
-
-
     private String env;
 
-    public PageAddress(String env) {
+    public PageAddress(String env, WebDriver driver) {
         this.env = env;
+//        super(driver);
     }
 
     protected String homePageUrl = "https://automationexercise.com/";
