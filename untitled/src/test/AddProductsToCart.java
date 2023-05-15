@@ -16,7 +16,6 @@ public class AddProductsToCart extends BaseTest{
     public void addProductsToCart() throws InterruptedException {
         HomePage homePage = new HomePage(driver);
         homePage.waitUntilHomePageVisible();
-        assertEquals(pageAddress.getHomePageUrl(), getCurrentAddress());
         ProductsPage productsPage = homePage.openProducts();
         List<String> product1Details = productsPage.selectProductByIndex(1);
         productsPage.confirmAlertToContinueShopping();

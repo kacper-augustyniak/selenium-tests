@@ -17,7 +17,7 @@ public class ProductsAndDetailsVerify extends BaseTest {
     public void productsVerify() {
         HomePage homePage = new HomePage(driver);
         homePage.waitUntilHomePageVisible();
-        productsPage = homePage.openProducts();
+//        productsPage = homePage.openProducts();
         assertEquals(pageAddress.getProductsPageUrl(), getCurrentAddress());
         assertTrue(productsPage.productsPageHeaderIsVisible());
         assertTrue(productsPage.productsListIsPresent());

@@ -8,7 +8,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageobject.CategorySideBarObjects;
 import pageobject.NavigationBarObjects;
-import pagestructure.FooterObjects;
+import pageobject.FooterObjects;
+import pageobject.PopupObjects;
 
 import static org.testng.AssertJUnit.*;
 
@@ -24,6 +25,8 @@ public class HomePage extends BasePage {
     private FooterObjects footerObjects;
     private PageAddress pageAddress;
 
+    private PopupObjects popupObjects;
+
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -35,6 +38,10 @@ public class HomePage extends BasePage {
     public HomePage launchPage() {
         navigationBarObjects.getLogoButton().click();
         return new HomePage(driver);
+    }
+
+    public boolean checkHomePageUrl() {
+        return pageAddress.getHomePageUrl() == driver.getCurrentUrl();
     }
 
     public void waitUntilHomePageVisible() {
@@ -86,14 +93,21 @@ public class HomePage extends BasePage {
         return new CartPage(driver);
     }
 
-    public ProductsPage openProducts() {
+    public ProductsPage openProducts() throws InterruptedException {
         navigationBarObjects.getProductsButton().click();
+        Thread.sleep(5000);
+        if (pageAddress.getAdvertisementPageUrl() == driver.getCurrentUrl())
+            try {
+            popupObjects.getDismissAdBtn().click();
+            } catch (Exception e) {
+                System.out.println("Advertisement could not be closed with msg");
+                e.printStackTrace();
+            }
         return new ProductsPage(driver);
     }
 
     public HomePage scrollFooterIntoView(){
         scrollToElement(footerObjects.getFooter());
-
         return new HomePage(driver);
     }
 

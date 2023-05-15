@@ -1,6 +1,7 @@
 package address;
 
 import org.openqa.selenium.WebDriver;
+import pages.BasePage;
 
 public class PageAddress {
     private String env;
@@ -24,6 +25,7 @@ public class PageAddress {
     protected String accountCreatedPageUrl = "https://automationexercise.com/account_created";
 
     protected String accountDeletedPageUrl = "https://automationexercise.com/delete_account";
+    protected String advertisementPageUrl = "https://automationexercise.com/#google_vignette";
 
     public String getHomePageUrl() {
         return homePageUrl;
@@ -67,5 +69,9 @@ public class PageAddress {
 
     public String getAccountDeletedPageUrl() {
         return accountDeletedPageUrl;
+    }
+
+    public String getAdvertisementPageUrl() {
+        return advertisementPageUrl;
     }
 }

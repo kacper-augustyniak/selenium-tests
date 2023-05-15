@@ -67,7 +67,7 @@ public class ProductsPage extends BasePage{
         js.executeScript("window.scrollBy(0, 500)");
 //        hover over first product - image
         WebElement element = driver.findElement
-                (By.xpath("//*[@class='features_items']//*[@class='col-sm-4']["+ productIndex + "]"));
+                (By.xpath("(//*[@class='features_items']//*[@class='col-sm-4'])[" + productIndex + "]"));
 //        preserve name and price to be returned for assertion
         String productName = element.findElement(By.xpath("//p")).getText();
         String productPrice = element.findElement(By.xpath("//h2")).getText();

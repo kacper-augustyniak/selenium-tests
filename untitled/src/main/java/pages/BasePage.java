@@ -33,8 +33,9 @@ public class BasePage {
         actions.scrollToElement(element).perform();
     }
 
-    public void checkPageUrl() {
-//        pageAddress.
+    public void waitForPageToBeLoaded(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.stalenessOf(element));
     }
 
 }

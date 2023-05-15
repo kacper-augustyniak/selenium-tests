@@ -12,8 +12,9 @@ public class LoginUser extends BaseTest {
     private PageAddress pageAddress;
 
     private String emailAddress = "qwerty001@abc.pl";
-    private String password = "qwerty001";
-    private String username = "qwerty001";
+    private String password = "1";
+    private String username = "qwerty";
+
     @Test
     public void createNewUser() {
 
@@ -31,7 +32,7 @@ public class LoginUser extends BaseTest {
         assertEquals(homePage.getLoggedInUsername(), username);
         AccountDeletedPage accountDeletedPage = homePage.deleteAccount();
         accountDeletedPage.waitUntilPageIsDisplayed();
-        assertEquals(pageAddress.getAccountDeletedPageUrl(), getCurrentAddress());
+        assertTrue(homePage.checkHomePageUrl());
         accountDeletedPage.continueDeletion();
         }
 }

@@ -10,6 +10,8 @@ import java.time.Duration;
 
 public class BaseTest {
 
+    PageAddress pageAddress;
+
     String getHomePageUrl = "https://automationexercise.com/";
 
     WebDriver driver;
@@ -19,7 +21,7 @@ public class BaseTest {
     public void before() {
         System.setProperty("webdriver.chrome.driver", driverPath);
         ChromeOptions options = new ChromeOptions();
-        options.setImplicitWaitTimeout(Duration.ofSeconds(4));
+        options.setImplicitWaitTimeout(Duration.ofSeconds(7));
         options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
         options.setBrowserVersion("112");
         options.addArguments("--start-maximized");

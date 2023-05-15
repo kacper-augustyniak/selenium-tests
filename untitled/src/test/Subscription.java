@@ -2,7 +2,7 @@ import address.PageAddress;
 import org.testng.annotations.Test;
 import pages.CartPage;
 import pages.HomePage;
-import pagestructure.FooterObjects;
+import pageobject.FooterObjects;
 
 import static org.testng.AssertJUnit.*;
 
