@@ -6,8 +6,6 @@ import pages.ProductsPage;
 
 import java.util.List;
 
-import static org.testng.AssertJUnit.*;
-
 public class AddProductsToCart extends BaseTest{
 
     String env = "test";

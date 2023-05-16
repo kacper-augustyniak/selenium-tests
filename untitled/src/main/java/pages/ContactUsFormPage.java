@@ -1,5 +1,7 @@
 package pages;
 
+import address.PageAddress;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,14 +12,26 @@ import java.time.Duration;
 
 public class ContactUsFormPage extends BasePage {
 
+    private String env = "test";
     private ContactUsFormPageObjects contactUsFormPageObjects;
+    private PageAddress pageAddress;
+
     public ContactUsFormPage(WebDriver driver) {
         super(driver);
         contactUsFormPageObjects = new ContactUsFormPageObjects(driver);
+        pageAddress = new PageAddress(env, driver);
     }
 
-    public void waitUntilElementIsVisible(WebElement element) {
-        waitForWebElement(element);
+    public void waitUntilContactUsPageIsVisible() {
+        waitForWebElement(contactUsFormPageObjects.getHeader());
+    }
+
+    public boolean checkContactUsFormUrl() {
+        return pageAddress.getContactUsPageUrl().equalsIgnoreCase(driver.getCurrentUrl());
+    }
+
+    public void checkSubmittedStatusIsSuccess() {
+        waitForWebElement(contactUsFormPageObjects.getSubmittedWithSuccess());
     }
 
     public void submitData(String name, String email, String subject) {

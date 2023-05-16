@@ -33,6 +33,7 @@ public class HomePage extends BasePage {
         navigationBarObjects = new NavigationBarObjects(driver);
         footerObjects = new FooterObjects(driver);
         pageAddress = new PageAddress(env, driver);
+        popupObjects = new PopupObjects(driver);
     }
 
     public HomePage launchPage() {
@@ -41,7 +42,7 @@ public class HomePage extends BasePage {
     }
 
     public boolean checkHomePageUrl() {
-        return pageAddress.getHomePageUrl() == driver.getCurrentUrl();
+        return pageAddress.getHomePageUrl().equalsIgnoreCase(driver.getCurrentUrl());
     }
 
     public void waitUntilHomePageVisible() {
@@ -96,7 +97,7 @@ public class HomePage extends BasePage {
     public ProductsPage openProducts() throws InterruptedException {
         navigationBarObjects.getProductsButton().click();
         Thread.sleep(5000);
-        if (pageAddress.getAdvertisementPageUrl() == driver.getCurrentUrl())
+        if (popupObjects.getAdPopup().isDisplayed())
             try {
             popupObjects.getDismissAdBtn().click();
             } catch (Exception e) {

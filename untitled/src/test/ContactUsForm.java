@@ -19,21 +19,21 @@ public class ContactUsForm extends BaseTest {
     private String subject = "Hello world";
     private String message = "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum ";
 
-
+// functional
     @Test
     public void contactUsForm() {
         HomePage homePage = new HomePage(driver);
         homePage.waitUntilHomePageVisible();
         ContactUsFormPage contactUsFormPage = homePage.openContactUsForm();
-        wait.waitUntilElementIsVisible(contactUsFormPageObjects.getHeader());
-        assertEquals(pageAddress.getContactUsPageUrl(), getCurrentAddress());
+        contactUsFormPage.waitUntilContactUsPageIsVisible();
+        assertTrue(contactUsFormPage.checkContactUsFormUrl());
         contactUsFormPage.submitData(name, email, subject);
         contactUsFormPage.submitMessage(message);
         contactUsFormPage.uploadFile(filePath);
         contactUsFormPage.submitForm();
         contactUsFormPage.alertHandle(true);
-        wait.waitUntilElementIsVisible(contactUsFormPageObjects.getSubmittedWithSuccess());
+        contactUsFormPage.checkSubmittedStatusIsSuccess();
         contactUsFormPage.confirmAndReturnToHome();
-        assertEquals(pageAddress.getHomePageUrl(), getCurrentAddress());
+        homePage.waitUntilHomePageVisible();
     }
 }
