@@ -5,8 +5,7 @@ import pageobject.SignUpPageObjects;
 import pages.HomePage;
 import pages.SignupPage;
 
-import static org.testng.AssertJUnit.assertEquals;
-import static org.testng.AssertJUnit.assertFalse;
+import static org.testng.AssertJUnit.*;
 
 public class LogoutUser extends BaseTest {
 
@@ -23,12 +22,10 @@ public class LogoutUser extends BaseTest {
         signupPage.waitUntilLoginPageHeaderIsVisible();
         signupPage.newLogin(emailAddress, password);
         HomePage loggedUserHomePage = signupPage.submitLogin();
-//        string for logged user is visible except username
-        loggedUserHomePage.waitUntilLoggedUserIsVisible();
+        loggedUserHomePage.waitUntilLoggedUserIsVisible(); // string for logged user is visible except username
         assertEquals(homePage.getLoggedInUsername(), username);
-        loggedUserHomePage.logoutUser();
-        loggedUserHomePage.waitUntilHomePageVisible();
-        assertEquals(pageAddress.getHomePageUrl(), getCurrentAddress());
-        assertFalse(loggedUserHomePage.loggedUserInfoPresent());
+        SignupPage signupPage2 = loggedUserHomePage.logoutUser();
+        assertTrue(signupPage2.checkSignUpLoginUrl());
+        assertFalse(signupPage2.loggedUserInfoPresent()); // element should not be present at all times - method written with try/catch
     }
 }

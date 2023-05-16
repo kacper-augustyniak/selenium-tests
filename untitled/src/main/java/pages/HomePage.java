@@ -74,9 +74,9 @@ public class HomePage extends BasePage {
         return new AccountDeletedPage(driver);
     }
 
-    public HomePage logoutUser() {
+    public SignupPage logoutUser() {
         navigationBarObjects.getLogoutButton().click();
-        return new HomePage(driver);
+        return new SignupPage(driver);
     }
 
     public ContactUsFormPage openContactUsForm() {

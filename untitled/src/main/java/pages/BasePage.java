@@ -20,7 +20,7 @@ public class BasePage {
     public BasePage(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver,this);
-        pageAddress = new PageAddress(env, driver);
+//        pageAddress = new PageAddress(env, driver);
     }
 
     public void waitForWebElement(WebElement element) {

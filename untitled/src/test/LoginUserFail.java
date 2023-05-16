@@ -17,6 +17,7 @@ public class LoginUserFail extends BaseTest {
     private String password = "password" + random.nextInt();
     private String username = "username";
 
+//    functional
     @Test
     public void LoginUserFail() {
         HomePage homePage = new HomePage(driver);
@@ -24,8 +25,8 @@ public class LoginUserFail extends BaseTest {
         SignupPage signupPage = homePage.registerOrLogInUser();
         signupPage.waitUntilLoginPageHeaderIsVisible();
         signupPage.newLogin(emailAddress, password);
-        HomePage loggedUserHomePage = signupPage.submitLogin();
+        signupPage.submitLogin();
         assertTrue(signupPage.failedLoginErrorMessage());
-        assertEquals(pageAddress.getSignupLoginPageUrl(), getCurrentAddress());
+        assertTrue(signupPage.checkSignUpLoginUrl());
     }
 }

@@ -11,18 +11,19 @@ public class RegisterUserWithOldCredentials extends BaseTest {
 
     private SignUpPageObjects signUpPageObjects;
     private PageAddress pageAddress;
-    private String username;
-    private String emailAddress;
+    private String username = "qwerty001";
+    private String emailAddress = "qwerty001@abc.pl";
+
+    // functional
     @Test
     public void registerUserWithOldCreds() {
         HomePage homePage = new HomePage(driver);
         homePage.waitUntilHomePageVisible();
         SignupPage signupPage = homePage.registerOrLogInUser();
         signupPage.waitUntilSignUpLabelIsVisible();
-        assertEquals(pageAddress.getSignupLoginPageUrl(), getCurrentAddress());
+        assertTrue(signupPage.checkSignUpLoginUrl());
         signupPage.newUser(username, emailAddress);
         signupPage.submitNewUser();
-        assertEquals(pageAddress.getSignupPageUrl(), getCurrentAddress());
         assertTrue(signupPage.failedSignupErrorMessage());
     }
 }

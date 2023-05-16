@@ -3,12 +3,12 @@ package address;
 import org.openqa.selenium.WebDriver;
 import pages.BasePage;
 
-public class PageAddress {
+public class PageAddress extends BasePage {
     private String env;
 
     public PageAddress(String env, WebDriver driver) {
+        super(driver);
         this.env = env;
-//        super(driver);
     }
 
     protected String homePageUrl = "https://automationexercise.com/";
