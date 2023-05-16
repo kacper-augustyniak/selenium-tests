@@ -12,7 +12,7 @@ public class LoginUser extends BaseTest {
     private PageAddress pageAddress;
 
     private String emailAddress = "qwerty001@abc.pl";
-    private String password = "1";
+    private String password = "qwerty";
     private String username = "qwerty";
 
     @Test

@@ -1,7 +1,9 @@
 package pages;
 
+import address.PageAddress;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.devtools.v85.page.Page;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageobject.SignUpPageObjects;
@@ -9,12 +11,22 @@ import pageobject.SignUpPageObjects;
 import java.time.Duration;
 
 public class SignupPage extends BasePage{
-
+    private String env = "test";
     private SignUpPageObjects signupPageObjects;
+    private PageAddress pageAddress;
 
     public SignupPage(WebDriver driver) {
         super(driver);
         signupPageObjects = new SignUpPageObjects(driver);
+        pageAddress = new PageAddress(env, driver);
+    }
+
+    public void waitUntilLoginPageHeaderIsVisible() {
+        waitForWebElement(signupPageObjects.getLoginPageHeader());
+    }
+
+    public boolean checkSignUpLoginUrl() {
+        return pageAddress.getSignupLoginPageUrl().equalsIgnoreCase(driver.getCurrentUrl());
     }
 
     public boolean failedLoginErrorMessage() {
@@ -53,7 +65,4 @@ public class SignupPage extends BasePage{
         waitForWebElement(signupPageObjects.getSignupLabel());
     }
 
-    public void waitUntilLoginPageHeaderIsVisible() {
-        waitForWebElement(signupPageObjects.getLoginPageHeader());
-    }
 }

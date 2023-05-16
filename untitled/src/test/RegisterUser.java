@@ -11,15 +11,14 @@ import static org.testng.AssertJUnit.*;
 
 
 public class RegisterUser extends BaseTest {
-//    private SignUpFormObjects signUpFormObjects = new SignUpFormObjects();
-//    private SignUpPageObjects signUpPageObjects;
-//    private NavigationBarObjects navigationBarObjects;
     private PageAddress pageAddress;
 
     private Random random = new Random();
 
-    private String username = random.nextInt() + "name";
-    private String emailAddress = random.nextInt() + "@abc.com";
+    private String username = random.nextInt(1, 10000) + "name";
+    private String emailAddress = random.nextInt(1, 10000) + "@abc.com";
+
+//    functional + popup not handled at final assertion...
 
     @Test
     public void registerUser() {
@@ -27,35 +26,37 @@ public class RegisterUser extends BaseTest {
         homePage.waitUntilHomePageVisible();
         SignupPage signupPage = homePage.registerOrLogInUser();
         signupPage.waitUntilSignUpLabelIsVisible();
-        assertEquals(pageAddress.getSignupLoginPageUrl(), getCurrentAddress());
+        assertTrue(signupPage.checkSignUpLoginUrl());
         signupPage.newUser(username, emailAddress);
         SignUpFormPage signUpFormPage = signupPage.submitNewUser();
-        assertEquals(pageAddress.getSignupPageUrl(), getCurrentAddress());
+        assertTrue(signUpFormPage.checkSignUpFormUrl());
+        signUpFormPage.setPassword("qwerty");
         signUpFormPage.chooseTitle("Ms");
-        signUpFormPage.chooseDay(1);
-        signUpFormPage.chooseMonth(1);
+        signUpFormPage.chooseDay(5);
+        signUpFormPage.chooseMonth(6);
         signUpFormPage.chooseYear(2005);
         signUpFormPage.chooseNwsletter(true);
         signUpFormPage.chooseOffers(true);
+        signUpFormPage.scrollToMobileNumber();
         signUpFormPage.setName("John");
         signUpFormPage.setLastName("Smith");
         signUpFormPage.setCompany("Company XYZ");
         signUpFormPage.setAddress("St. Maria 1000 street");
         signUpFormPage.setAddress2("10/50 1st floor");
-        signUpFormPage.pickCountry("India");
+        signUpFormPage.pickCountry("Canada");
         signUpFormPage.setState("Georgia");
         signUpFormPage.setCity("Georgia Town");
+        signUpFormPage.scrollToFooter();
         signUpFormPage.setZipcode("0000-0001");
         signUpFormPage.setMobileNumber("900800700");
         AccountCreatedPage accountCreatedPage = signUpFormPage.submitAccount();
         accountCreatedPage.waitUntilHeaderIsDisplayed();
-        assertEquals(pageAddress.getAccountCreatedPageUrl(), getCurrentAddress());
+        assertTrue(accountCreatedPage.checkAccountCreatedPageUrl());
         accountCreatedPage.continueRegistration();
         homePage.waitUntilLoggedUserIsVisible();
-        System.out.printf(homePage.getLoggedInUsername());
         AccountDeletedPage accountDeletedPage = homePage.deleteAccount();
         accountDeletedPage.waitUntilPageIsDisplayed();
-        assertEquals(pageAddress.getAccountDeletedPageUrl(), getCurrentAddress());
+        assertTrue(accountDeletedPage.checkAccountDeletedPageUrl());
         accountDeletedPage.continueDeletion();
     }
 }

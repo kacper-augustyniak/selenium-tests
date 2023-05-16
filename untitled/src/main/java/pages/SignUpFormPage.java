@@ -1,25 +1,44 @@
 package pages;
 
+import address.PageAddress;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pageobject.FooterObjects;
 import pageobject.SignUpFormObjects;
+import pageobject.SignUpPageObjects;
 
 import java.time.Duration;
 
 public class SignUpFormPage extends BasePage {
 
     private SignUpFormObjects signUpFormObjects;
+    private FooterObjects footerObjects;
+    private String env = "test";
+    private PageAddress pageAddress;
 
     public SignUpFormPage(WebDriver driver) {
         super(driver);
-        signUpFormObjects = new SignUpFormObjects();
+        signUpFormObjects = new SignUpFormObjects(driver);
+        pageAddress = new PageAddress(env, driver);
+        footerObjects = new FooterObjects(driver);
     }
 
     public void waitUntilElementIsVisible(WebElement element) {
         waitForWebElement(element);
+    }
+
+    public void scrollToFooter(){
+        scrollToElement(footerObjects.getFooter());
+    }
+
+    public void scrollToMobileNumber(){
+        scrollToElement(signUpFormObjects.getMobile());
+    }
+    public boolean checkSignUpFormUrl() {
+        return pageAddress.getSignupPageUrl().equalsIgnoreCase(driver.getCurrentUrl());
     }
 
     public void chooseTitle(String title) {
@@ -30,19 +49,28 @@ public class SignUpFormPage extends BasePage {
                 signUpFormObjects.getMsButton().click();
         }
     }
+    public void setPassword(String password) {
+        signUpFormObjects.getPassword().click();
+        signUpFormObjects.getPassword().sendKeys(password);
+    }
     public void chooseDay(int day) {
-        driver.findElement(By.xpath("//*[@id='days']//*[@value='" + day + "']")).click();
+        day += 1;
+        signUpFormObjects.getDaysList().click();
+        driver.findElement(By.xpath("//*[@id='days']/option[" + day + "]")).click();
 //        WebElement getDropdown = signUpFormElements.getDaysList();
 //        getDropdown.click();
 //        List<WebElement> daysList = getDropdown.findElements(By.xpath("//*option"));
     }
 
     public void chooseMonth (int month) {
-        driver.findElement(By.xpath("//*[@id='months']//*[value='" + month + "']")).click();
+        month += 1;
+        signUpFormObjects.getMonthsList().click();
+        driver.findElement(By.xpath("//*[@id='months']/option[" + month + "]")).click();
     }
 
     public void chooseYear (int year) {
-        driver.findElement(By.xpath("//*[@id='years']//*[value='" + year + "']")).click();
+        signUpFormObjects.getYearsList().click();
+        driver.findElement(By.xpath("//*[@id='years']/option[contains(text(), '" + year + "')]")).click();
     }
 
 
@@ -116,8 +144,8 @@ public class SignUpFormPage extends BasePage {
     }
 
     public void setMobileNumber(String mobileNumber) {
-        signUpFormObjects.getZipcode().click();
-        signUpFormObjects.getZipcode().sendKeys(mobileNumber);
+        signUpFormObjects.getMobile().click();
+        signUpFormObjects.getMobile().sendKeys(mobileNumber);
     }
 
     public void pickCountry(String countryName) {

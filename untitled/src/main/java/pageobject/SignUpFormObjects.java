@@ -1,10 +1,16 @@
 package pageobject;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.BasePage;
 
 
-public class SignUpFormObjects {
+public class SignUpFormObjects extends BasePage {
+
+    public SignUpFormObjects(WebDriver driver) {
+        super(driver);
+    }
 
     @FindBy (xpath = "//h2//*[contains(text(), 'Enter Account Information')]")
     private WebElement signUpFormHeader;
@@ -21,18 +27,18 @@ public class SignUpFormObjects {
     @FindBy (xpath = "//*[@id='days']")
     private WebElement daysList;
 
-    @FindBy (id = "//*[@id='months']")
+    @FindBy (xpath = "//*[@id='months']")
 
     private WebElement monthsList;
 
-    @FindBy (id = "//*[@id='years']")
+    @FindBy (xpath = "//*[@id='years']")
 
     private WebElement yearsList;
 
-    @FindBy (id = "//*[@id='newsletter']")
+    @FindBy (xpath = "//*[@id='newsletter']")
     private WebElement newsletterChckbx;
 
-    @FindBy (id = "//*[@id='optin']")
+    @FindBy (xpath = "//*[@id='optin']")
     private WebElement offersChckbx;
 
     @FindBy (id = "first_name")

@@ -3,8 +3,13 @@ package pageobject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.BasePage;
 
-public class AccountCreatedPageObjects {
+public class AccountCreatedPageObjects extends BasePage {
+
+    public AccountCreatedPageObjects(WebDriver driver) {
+        super(driver);
+    }
 
     @FindBy (xpath = "//h2//*[text()='Account Created!']")
     private WebElement header;
