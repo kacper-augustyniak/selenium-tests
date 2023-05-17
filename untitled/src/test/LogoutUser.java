@@ -14,6 +14,7 @@ public class LogoutUser extends BaseTest {
     private String password = "qwerty001";
     private String username = "qwerty001";
 
+    // functional
     @Test
     public void logoutUser() {
         HomePage homePage = new HomePage(driver);

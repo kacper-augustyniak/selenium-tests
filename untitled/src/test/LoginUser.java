@@ -16,10 +16,6 @@ public class LoginUser extends BaseTest {
     private String username = "qwerty";
 
     @Test
-    public void createNewUser() {
-
-    }
-    @Test
     public void loginUserWithCorrectCredentials() {
         HomePage homePage = new HomePage(driver);
         homePage.waitUntilHomePageVisible();
@@ -27,8 +23,7 @@ public class LoginUser extends BaseTest {
         signupPage.waitUntilLoginPageHeaderIsVisible();
         signupPage.newLogin(emailAddress, password);
         HomePage loggedUserHomePage = signupPage.submitLogin();
-//        string for logged user is visible except username
-        loggedUserHomePage.waitUntilLoggedUserIsVisible();
+        loggedUserHomePage.waitUntilLoggedUserIsVisible(); // string for logged user is visible except username
         assertEquals(homePage.getLoggedInUsername(), username);
         AccountDeletedPage accountDeletedPage = homePage.deleteAccount();
         accountDeletedPage.waitUntilPageIsDisplayed();

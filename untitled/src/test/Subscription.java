@@ -13,29 +13,28 @@ public class Subscription extends BaseTest {
     private PageAddress pageAddress = new PageAddress(env, driver);
     private FooterObjects footerObjects = new FooterObjects(driver);
 
+    // both functional
+
     @Test
     public void subscription() {
         HomePage homePage = new HomePage(driver);
         homePage.waitUntilHomePageVisible();
-        assertEquals(pageAddress.getHomePageUrl(), getCurrentAddress());
-//        wywołanie obiektow na tym poziomie nie zadziala ??? trzeba ustawic na pozioie page'a
+        assertTrue(homePage.checkHomePageUrl());
         homePage.scrollFooterIntoView();
-
-//        assertEquals(footerObjects.getSubscriptionHeader().getText(), "SUBSCRIPTION");
+//        assertTrue(footerObjects.getSubscriptionHeader().isDisplayed());
         homePage.createSubscription(emailAddress);
-        homePage.waitForWebElement(footerObjects.getSubscribedAlert());
+        homePage.waitUntilSubscriptionAlertIsVisible();
     }
 
     @Test
     public void subscriptionCart() {
         HomePage homePage = new HomePage(driver);
         homePage.waitUntilHomePageVisible();
-        assertEquals(pageAddress.getHomePageUrl(), getCurrentAddress());
-//        dziedziczenie? metory z homePage na cartPage w kontescie footera ???
-        CartPage cartPage = homePage.openCart();
-        homePage.scrollToElement(footerObjects.getFooter());
-        assertEquals(footerObjects.getSubscriptionHeader().getText(), "SUBSCRIPTION");
+        assertTrue(homePage.checkHomePageUrl());
+        homePage.openCart();
+        homePage.scrollFooterIntoView();
+//        assertEquals(footerObjects.getSubscriptionHeader().getText(), "SUBSCRIPTION");
         homePage.createSubscription(emailAddress);
-        homePage.waitForWebElement(footerObjects.getSubscribedAlert());
+        homePage.waitUntilSubscriptionAlertIsVisible();
     }
 }

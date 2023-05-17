@@ -18,13 +18,13 @@ public class FooterObjects extends BasePage {
     @FindBy (xpath = "//footer//h2")
     private WebElement subscriptionHeader;
 
-    @FindBy (id = "subscribe_email")
+    @FindBy (xpath = "//input[@type=\"email\"]")
     private WebElement emailToSubscribe;
 
     @FindBy (id = "subscribe")
     private WebElement subscribeBtn;
 
-    @FindBy (id = "success-subscribe")
+    @FindBy (className = "alert-success")
     private WebElement subscribedAlert;
 
     @FindBy (xpath = "//footer/div[2]/div/div/p")

@@ -54,6 +54,10 @@ public class HomePage extends BasePage {
         assertEquals(carouselAd.isDisplayed(), true);
     }
 
+    public void waitUntilSubscriptionAlertIsVisible() {
+        waitForWebElement(footerObjects.getSubscribedAlert());
+    }
+
     public void waitUntilLoggedUserIsVisible() {
         waitForWebElement(navigationBarObjects.getLoggedUser());
     }
@@ -114,7 +118,7 @@ public class HomePage extends BasePage {
 
     public void createSubscription(String email) {
         footerObjects.getEmailToSubscribe().sendKeys(email);
-        footerObjects.getSubscribeBtn();
+        footerObjects.getSubscribeBtn().click();
     }
 
     public boolean loggedUserInfoPresent() {
